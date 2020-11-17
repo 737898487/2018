@@ -8,6 +8,7 @@ import threading
 import multiprocessing  
 import Extract
 import collections
+import gl
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Executor
 import warnings
 
@@ -29,10 +30,10 @@ def MultiprocessingNeedleman(key,seqs):
 
     return
 
-def BinRe(data_input)
+def BinRe(data_input):
     warnings.filterwarnings("ignore")
     # data path
-    # app="mrzh"
+    app="taobao"
     # data_input="./data/"+app
     files=os.listdir(data_input)
     data=dict()
@@ -47,7 +48,7 @@ def BinRe(data_input)
     application=Extract.Application(app,data,sports,dports)
     application.setTraffic()
     application.setTrafficFea(True)
-    # application.tojson()
+    application.tojson()
     # data_path="./data/smb.pcap"
     # # files=os.listdir(data_path)
     # # for i in range(len(files)):
@@ -68,3 +69,7 @@ def BinRe(data_input)
     #     out.close()
     #     conPool.submit(MultiprocessingNeedleman,key,res[key])
     # conPool.shutdown(True)
+
+if __name__ == "__main__":
+    BinRe("./data/明日之后安卓/bin_tcp")
+    # print(gl.sum)
