@@ -1,0 +1,28 @@
+{
+    "name":"tls",
+    "dports":[
+        443
+    ],
+    "tls":{
+        "0":{
+            "value":"1603010200010001fc0303",
+            "offset":1,
+            "packetnum":1
+        },
+        "1":{
+            "value":"16030300410200003d0303",
+            "offset":1,
+            "packetnum":2
+        },
+        "2":{
+            "value":"214d298023d91465f7e87839979a6a1c",
+            "offset":1,
+            "packetnum":3
+        },
+        "3":{
+            "value":"303b3039a037a0358633687474703a2f",
+            "offset":1,
+            "packetnum":4
+        }
+    }
+}

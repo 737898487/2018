@@ -1,0 +1,30 @@
+{
+    "name":"mmtls",
+    "tcp_1":{
+        "0":{
+            "value":"1",
+            "offset":1,
+            "packetnum":1
+        },
+        "1":{
+            "value":"f1030",
+            "offset":3,
+            "packetnum":1
+        },
+        "2":{
+            "value":"17f103",
+            "offset":1,
+            "packetnum":2
+        },
+        "3":{
+            "value":"1",
+            "offset":1,
+            "packetnum":3
+        },
+        "4":{
+            "value":"f103",
+            "offset":3,
+            "packetnum":3
+        }
+    }
+}
