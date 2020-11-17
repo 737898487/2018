@@ -1,0 +1,8 @@
+{
+"ftp": {
+    "tcp_port": 21,
+    "tcp_flow": 500,
+    "udp_port": "None",
+    "udp_flow": -1
+}
+}
