@@ -58,7 +58,7 @@ class Application:
         if len(self.sports)<=4:
             res["sports"]=list(self.sports)
         for key in self.traffics.keys():
-            k=key.split('/')[-1]
+            k=key.split('/')[-2]+key.split('/')[-1]
             # res[k]=Transfrom (self.traffics[key].fea)
             res[k]=self.traffics[key].fea_clus
         json_res=json.dumps(res,indent=4,separators=(',',':'))
@@ -101,8 +101,8 @@ class Traffic:
         '''
         fea_vector = collections.OrderedDict()
         line_count = 1 # 行
-        all_pkt_p=list()
-        count=3
+        # all_pkt_p=list()
+        # count=3
         for line in matrix[1:]:
             col_count = 0 # 列
             all_pkt=0
@@ -127,7 +127,7 @@ class Traffic:
         res=parse.Parse(pcap_data,0)
         features=dict()
         for key in res.keys():
-            if len(res[key])>5:
+            if len(res[key])>3:
                 features[key]=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
                 print(features[key]," ",len(res[key]))
                 # gl.sum+=len(res[key])
@@ -169,10 +169,10 @@ def TransfromAutomata(features:collections.OrderedDict()):
     flag=positions[0]
     for position in positions:
         if position==flag:
-            feature+=features[position][0]
+            feature+=features[position][0].hex()
             flag+=1
         else:
-            feature+="-"+features[position][0]
+            feature+="-"+features[position][0].hex()
             flag=position+1
     return feature    
 

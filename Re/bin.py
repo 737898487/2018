@@ -33,18 +33,25 @@ def MultiprocessingNeedleman(key,seqs):
 def BinRe(data_input):
     warnings.filterwarnings("ignore")
     # data path
-    app="taobao"
+    app=data_input.split("/")[-1]
     # data_input="./data/"+app
-    files=os.listdir(data_input)
+    files_tcp=os.listdir(data_input+"/bin_tcp")
+    for i in range(len(files_tcp)):
+        files_tcp[i]=data_input+"/bin_tcp/"+files_tcp[i]
+    files_udp=os.listdir(data_input+"/bin_udp")
+    for i in range(len(files_udp)):
+        files_udp[i]=data_input+"/bin_udp/"+files_udp[i]
+    files=files_udp+files_tcp
+
     data=dict()
     for i in range(len(files)):# 
-        files[i]=data_input+"/"+files[i]
         pcaps_name=os.listdir(files[i])
         for j in range(len(pcaps_name)):
             pcaps_name[j]=files[i]+"/"+pcaps_name[j]
         # get data
         # data[files[i]]=readpcap.ReadAllPcap(pcaps_name,3)
-        data[files[i]],sports,dports=readpcap.ReadPcaps(pcaps_name,3)
+        if len(pcaps_name)>20:
+            data[files[i]],sports,dports=readpcap.ReadPcaps(pcaps_name,3)
     application=Extract.Application(app,data,sports,dports)
     application.setTraffic()
     application.setTrafficFea(True)
@@ -71,5 +78,5 @@ def BinRe(data_input):
     # conPool.shutdown(True)
 
 if __name__ == "__main__":
-    BinRe("./data/明日之后安卓/bin_tcp")
+    BinRe("./Re/data/明日之后安卓")
     # print(gl.sum)

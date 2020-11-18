@@ -67,9 +67,12 @@ def ReadPcaps(files_path,numspackets=3):
                 count += 1
                 index+=1
                 if index not in all_pcap_data.keys():
-                    all_pcap_data[index] = [transf_data.data.hex()]
+                    # all_pcap_data[index] = [transf_data.data.hex()]
+                    all_pcap_data[index] = [transf_data.data]
                 else:
-                    all_pcap_data[index].append(transf_data.data.hex())
+                    # all_pcap_data[index].append(transf_data.data.hex())
+                    all_pcap_data[index].append(transf_data.data)
+                    # all_pcap_data[index] = [transf_data.data.hex()]
                 if index==numspackets:
                     break
             except Exception as err:
