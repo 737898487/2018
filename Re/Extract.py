@@ -22,6 +22,10 @@ import parse
 import gl
 import collections
 from netzob.all import *
+from netzob.Model.Vocabulary.Types.TypeConverter import TypeConverter
+from netzob.Model.Vocabulary.Types.BitArray import BitArray
+
+
 class Application:
     def __init__(self,application:str,data:dict(),sports=None,dports=None):
         self.name=application#应用名称
@@ -54,8 +58,9 @@ class Application:
         if len(self.sports)<=4:
             res["sports"]=list(self.sports)
         for key in self.traffics.keys():
-            k=key.split('/')[-1]
-            res[k]=Transfrom (self.traffics[key].fea)
+            k=key.split('/')[-2]+key.split('/')[-1]
+            # res[k]=Transfrom (self.traffics[key].fea)
+            res[k]=self.traffics[key].fea_clus
         json_res=json.dumps(res,indent=4,separators=(',',':'))
         f=open("./result/"+self.name+".json",'w')
         f.write(json_res)
@@ -96,8 +101,8 @@ class Traffic:
         '''
         fea_vector = collections.OrderedDict()
         line_count = 1 # 行
-        all_pkt_p=list()
-        count=3
+        # all_pkt_p=list()
+        # count=3
         for line in matrix[1:]:
             col_count = 0 # 列
             all_pkt=0
@@ -118,29 +123,43 @@ class Traffic:
         for i in range(len(data)):
             pcap_data[i]=data[i]
         gl.res=dict()
+        
         res=parse.Parse(pcap_data,0)
         features=dict()
         for key in res.keys():
-            features[key]=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
-            print(features[key])
+            if len(res[key])>3:
+                features[key]=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
+                print(features[key]," ",len(res[key]))
+                # gl.sum+=len(res[key])
+
         rows=[]
+        out=[]
         for seq in list(features.values()):
             rows.append(RawMessage(seq.encode('utf-8')))
-        symbols = Format.clusterByAlignment(rows)
+        symbols = Format.clusterByAlignment(rows,minEquivalence=60)
         # Format.splitAligned(len(symbols))
-        Symbol
+        print("-"*20)
         for symbol in symbols:
-            # f=str(symbol.fields.list[0].domain.dataType.value)
-            # f.specialize()
-            # da=set(f)
-            from netzob.Model.Vocabulary.Types.TypeConverter import TypeConverter
-            from netzob.Model.Vocabulary.Types.BitArray import BitArray
-            f=str(
-                TypeConverter.convert(symbol.fields.list[0].domain.dataType.value, BitArray,Raw))
-            print(f[3:-1])
-
+            fs=""
+            l=symbol.fields.list
+            for d in l:
+                if d.domain.dataType.value:
+                    f=str(TypeConverter.convert(d.domain.dataType.value, BitArray,Raw))
+                    # print(f)
+                    f=isvalid(f[2:-1])
+                    if f=="-":
+                        if len(fs)==0 or fs[-1]!="-":
+                            fs+=f
+                    else:
+                        fs+=f
+                else:
+                    if len(fs)==0 or fs[-1]!="-" :
+                        fs+="-"
+            print(fs)
+            out.append(fs)
+        # print(out)
         print("*"*50)
-        return features
+        return out
 
 def TransfromAutomata(features:collections.OrderedDict()):
     feature=""
@@ -150,10 +169,10 @@ def TransfromAutomata(features:collections.OrderedDict()):
     flag=positions[0]
     for position in positions:
         if position==flag:
-            feature+=features[position][0]
+            feature+=features[position][0].hex()
             flag+=1
         else:
-            feature+="-"+features[position][0]
+            feature+="-"+features[position][0].hex()
             flag=position+1
     return feature    
 
@@ -194,6 +213,26 @@ def Transfrom(fea_vector:dict()):
                     "packetnum":v[value_count]
                 }
                 count+=1
+    return res
+
+def isvalid(feature:str):
+    if len(feature)==1:
+        return "-"
+    if feature.count("0")+feature.count("-")==len(feature):
+        return "-"
+
+    f=feature.split("-")
+    if len(f)==1:
+        if len(f[0])%2==1:
+            return f[0][0:-1]
+    else:
+        for i in range(len(f)):
+            f[i]=isvalid(f[i])
+    res=f[0]
+    for i in range(1,len(f)):
+        if f[i]!="-":
+            res+="-"+f[i]
+
     return res
 
 

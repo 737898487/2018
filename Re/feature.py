@@ -11,13 +11,14 @@ def GetFeaVet(matrix, pkt, threshold):
     '''
     fea_vector = collections.OrderedDict()
     line_count = 1 # 行
-    all_pkt_p=list()
-    count=3
+    # all_pkt_p=list()
+    # count=3
     for line in matrix[1:]:
         col_count = 0 # 列
         all_pkt=0
         for c in line:
-            if c / pkt >= threshold and c / pkt < 1 and matrix[0][col_count]!='--' :
+            if c / pkt >= threshold and matrix[0][col_count]!='--' :
+            # if c / pkt >= threshold and c / pkt < 1 and matrix[0][col_count]!='--' :    
                 all_pkt+=c
                 if line_count not in fea_vector.keys():
                     fea_vector[line_count]=[[matrix[0][col_count],c/pkt]]
@@ -86,7 +87,7 @@ def Clusters(pcap_data,X,nums_itor,max_clus=15):
             max_sil = temp
             num = n 
             final_y = res
-        # print(n, '  ', temp)
+        print(n, '  ', temp)
      
 
     split_dict = {}

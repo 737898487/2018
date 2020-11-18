@@ -18,7 +18,7 @@ def Parse(pacp_data,nums_itor):
     
 
     #提取特征
-    matrix=n_gram_matrix(pacp_data,2)
+    matrix=n_gram_matrix(pacp_data,1)
     fea_vec=GetFeaVet(matrix,pkt_num,gl.threshold_ofen)
 
 
@@ -27,7 +27,7 @@ def Parse(pacp_data,nums_itor):
 
     #聚类
     pkt_num_clus=len(clu_pkts)
-    matrix_clu=n_gram_matrix(clu_pkts,2)
+    matrix_clu=n_gram_matrix(clu_pkts,1)
     fea_vec_clus=GetFeaVet(matrix_clu,pkt_num_clus,gl.threshold_ofen)
     X=GetAllVet(clu_pkts,fea_vec_clus,4)
     res_clus=Clusters(clu_pkts,X,nums_itor)
@@ -64,7 +64,7 @@ def  Denoising(pacp_data,fea_vec):
         for value in item[1]:
             all_frequency+=value[1]
             fre.append(value[0])
-        # print(str(position)+":"+str(all_frequency)+" ",fre)
+        print(str(position)+":"+str(all_frequency)+" ",fre)
         if all_frequency>gl.threshold_denoise:
             denoise[position]=fre
         if all_frequency>gl.threshold_itor and all_frequency<gl.threshold_denoise and position < 5:
@@ -73,7 +73,7 @@ def  Denoising(pacp_data,fea_vec):
     if len(denoise) !=0 :
         for count in list(pacp_data.keys()):
             for pos in denoise.keys():
-                if pacp_data[count][pos-1:pos+1] not in denoise[pos]:
+                if pacp_data[count][pos-1:pos-1+gl.ngrams_len] not in denoise[pos]:
                     pacp_data.pop(count)
                     break
     
@@ -84,7 +84,7 @@ def  Denoising(pacp_data,fea_vec):
     if len(itor)!=0:
         for count in list(pacp_data.keys()):
             for pos in itor.keys():
-                if pacp_data[count][pos-1:pos+1] not in itor[pos]:
+                if pacp_data[count][pos-1:pos-1+gl.ngrams_len] not in itor[pos]:
                     itor_pkts[count]=pacp_data[count]
                     break
                 else:

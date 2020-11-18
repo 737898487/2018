@@ -4,3 +4,5 @@ threshold_denoise=0.95
 threshold_itor=0.4
 subclass_collection=dict()
 res=dict()
+ngrams_len=1
+# sum=0
