@@ -1,0 +1,20 @@
+^Mozilla\/+
+^[a|A]ndroid*
+^Windows Phone*
+^iPhone*
+^iPad*
+^[i|I][o|O][s|S]*
+^Windows NT +
+^[l|L]inux+
+Mac OS
+^AppleWebKit\/+
+^MSIE +
+^Chrome\/+
+^Gecko\/+
+^Firefox\/+
+^Safari\/+
+^MSS+_*
+^PRELOAD$
+^NetType\/+
+^BoringSSL$
+^[A-Za-z0-9]*\/+([0-9]*\.[0-9])*
