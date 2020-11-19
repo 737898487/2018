@@ -1,8 +1,0 @@
-{
-"mrzh_android": {
-    "tcp_port": 443,
-    "tcp_flow": 2,
-    "udp_port": "All",
-    "udp_flow": 1
-}
-}

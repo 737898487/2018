@@ -1,8 +1,0 @@
-{
-"lol": {
-    "tcp_port": "None",
-    "tcp_flow": -1,
-    "udp_port": "All",
-    "udp_flow": 1
-}
-}

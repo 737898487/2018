@@ -79,35 +79,35 @@ class PreProcess:
         tcp_list = sorted(tcp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_tcp_length = 0
         for flow in tcp_list:
-            if len(flow[1]) < 10:
-                break
-            now_tcp_length += len(flow[1])
-            if now_tcp_length / tcp_length > ratio:
+            if len(flow[1]) < 50:
                 break
             if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
                 self.text_tcp_flow_list.append(flow)
             else:
                 self.bin_tcp_flow_list.append(flow)
+            now_tcp_length += len(flow[1])
+            if now_tcp_length / tcp_length > ratio:
+                break
 
         udp_list = sorted(udp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_udp_length = 0
         for flow in udp_list:
-            if len(flow[1]) < 10:
-                break
-            now_udp_length += len(flow[1])
-            if now_udp_length / udp_length > ratio:
+            if len(flow[1]) < 50:
                 break
             if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
                 self.text_udp_flow_list.append(flow)
             else:
                 self.bin_udp_flow_list.append(flow)
+            now_udp_length += len(flow[1])
+            if now_udp_length / udp_length > ratio:
+                break
 
     def read_pcap_divide(self, src_path, ratio):
         path_list = os.listdir(src_path)
         count = 0
         for path in path_list:
             count += 1
-            # if count > 5:
+            # if count > 150:
             #     break
             self.read_drop(os.path.join(src_path, path), count, ratio)
 
