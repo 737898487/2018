@@ -1,14 +1,14 @@
 #!/usr/bin/python
 #coding:utf-8
 import os
-import readpcap
-import parse
-import Needleman
+import Re.readpcap as readpcap
+import Re.parse
+import Re.Needleman as Needleman
 import threading 
 import multiprocessing  
-import Extract
+import Re.Extract as Extract 
 import collections
-import gl
+import Re.gl
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Executor
 import warnings
 

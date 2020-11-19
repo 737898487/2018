@@ -15,11 +15,11 @@ json 文件
 }
 """
 import os
-import feature
-import ngram
+import Re.feature as feature
+import Re.ngram as ngram
 import json
-import parse
-import gl
+import Re.parse as parse
+import Re.gl as gl
 import collections
 from netzob.all import *
 from netzob.Model.Vocabulary.Types.TypeConverter import TypeConverter

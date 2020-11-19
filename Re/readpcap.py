@@ -1,7 +1,7 @@
 import dpkt
 import collections  # 
 import time
-import gl
+import Re.gl
 
 def ReadPcapHex(file_path,numspackets=3):
     '''
