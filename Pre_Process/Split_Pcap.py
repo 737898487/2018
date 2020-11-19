@@ -3,7 +3,6 @@ import dpkt
 import collections  # 有序字典
 import os
 
-
 def split_by_packet(path_src, path_des, new_file_name, packet_list):
     '''
     按包序号分割pcap
@@ -52,9 +51,3 @@ def split_by_packet(path_src, path_des, new_file_name, packet_list):
         return True
     else:
         return False
-
-
-if __name__ == "__main__":
-    src = "D:\\协议逆向\\filter\\filter_app_flow\\pptv_mobile\\0-0006.pcap"
-    des = "D:\\协议逆向\\filter\\filter_app_flow\\pptv_mobile\\"
-    split_by_packet(src, des, "test.pcap", [4,6,7,9])

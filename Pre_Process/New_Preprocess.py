@@ -1,7 +1,6 @@
 import dpkt
 import os
-from ..bin_text_test.bin_text import printable
-
+from Pre_Process.Bin_Text_Distinguish import printable
 
 class CountQuquadruple:
     def __init__(self, src, dst, src_port, dst_port, count):
@@ -22,7 +21,6 @@ class CountQuquadruple:
 
     def __str__(self):
         return str(self.count) + "_" + str(int.from_bytes(self.ip_src,'little')) + "_" + str(int.from_bytes(self.ip_dst,'little')) + "_" + str(self.src_port) + "_" + str(self.dst_port)
-
 
 class PreProcess:
     def __init__(self):

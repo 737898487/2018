@@ -1,11 +1,10 @@
-from .cluster.ngram import n_gram_matrix
-from .cluster.feature import *
-from .libs.new_preprocess import *
 import os
 import dpkt
-from .libs.packet_recombination import write_biflow_to_file
-from .libs.split_pcap import split_by_packet
-
+from Pre_Process.cluster.Ngram import n_gram_matrix
+from Pre_Process.cluster.Feature import *
+from Pre_Process.New_Preprocess import *
+from Pre_Process.Packet_Recombination import write_biflow_to_file
+from Pre_Process.Split_Pcap import split_by_packet
 
 def parse(src_path, dst_path, remove, flow_packets):
     if not os.path.exists(os.path.join(dst_path, "text_udp")):
@@ -63,9 +62,3 @@ def Pre_Process(src_path,
                 remove=True,
                 flow_packets=100):
     parse(src_path, dst_path, remove=remove, flow_packets=flow_packets)
-
-# if __name__ == '__main__':
-#     path = "D:\\协议逆向\\原始zip\\新建文件夹\\手机淘宝android1-100"
-#     dst_path = "D:\\协议逆向\\原始zip\\新建文件夹\\used"
-#
-#     parse(path, dst_path, False, 100)
