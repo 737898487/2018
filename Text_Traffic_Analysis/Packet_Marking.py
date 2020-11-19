@@ -158,16 +158,16 @@ def packets_mark_with_words(p_outpath, data_set, words):
                     set(code[index:index + len(x[0])])) > 1:
                 for k in range(index, index + len(x[0])):
                     code[k] = x[2]
-            elif code[index] != 0 :
-                start_index = index
-                while code[index] != 0:
-                    start_index += 1
-                    index = data.find(x[0], start_index)
-                if index == -1:
-                    continue
-                else:
-                    for k in range(index, index + len(x[0])):
-                        code[k] = x[2]
+            # elif code[index] != 0 :
+            #     start_index = index
+            #     while code[index] != 0:
+            #         start_index += 1
+            #         index = data.find(x[0], start_index)
+            #     if index == -1:
+            #         continue
+            #     else:
+            #         for k in range(index, index + len(x[0])):
+            #             code[k] = x[2]
             else:
                 for k in range(index, index + len(x[0])):
                     code[k] = x[2]
