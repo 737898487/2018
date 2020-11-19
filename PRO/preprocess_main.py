@@ -13,7 +13,7 @@ def preprocess(src_path,
         parse(src_path, dst_path, app_name, keep_only_app=keep_only_app, remove=remove, flow_packets=flow_packets)
     else:
         # new method(cluster)
-        from preprocess_2 import parse
+        from PRO.preprocess_2 import parse
         parse(src_path, dst_path, remove=remove, flow_packets=flow_packets)
 
 

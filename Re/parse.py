@@ -1,7 +1,7 @@
-from  ngram import n_gram_matrix
-from  feature  import GetFeaVet,GetAllVet,Clusters
-from readpcap import ReadPcapHex
-import gl
+from  Re.ngram import n_gram_matrix
+from  Re.feature  import GetFeaVet,GetAllVet,Clusters
+from Re.readpcap import ReadPcapHex
+import Re.gl as gl
 
 def Parse(pacp_data,nums_itor):
     '''
