@@ -8,8 +8,12 @@ from Text_Traffic_Analysis.Protocol_Feature import get_traffic_feature
 
 def Text_Re(DATA_PATH, MODE, NAME):
 
+    print(os.path.join(DATA_PATH, "text_tcp/0"))
     if os.path.exists(os.path.join(DATA_PATH, "text_tcp/0")):
-        DATA_PATH += "text_tcp/0/"
+        DATA_PATH += "/text_tcp/0/"
+    else:
+        print("No data")
+        return
 
     SEG_OUT_PATH = './run_file/seg_' + NAME 
     WORDS_PATH = './run_file/words_' + NAME 
