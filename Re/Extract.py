@@ -49,7 +49,7 @@ class Application:
         return
         
     def tojson(self):
-        res=dict()
+        res=collections.OrderedDict()
         res["name"]=self.name
         # print(self.sports)
         # print(self.dports)

@@ -78,5 +78,9 @@ def BinRe(data_input):
     # conPool.shutdown(True)
 
 if __name__ == "__main__":
-    BinRe("./Re/data/明日之后安卓")
+    # files=os.listdir("./Re/NewData")
+    # for i in range(len(files)):
+        # files[i]="./Re/NewData/"+files[i]
+        # BinRe(files[i])
+    BinRe("./Re/NewData/smb")
     # print(gl.sum)
