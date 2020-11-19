@@ -445,7 +445,7 @@ class traffic:
         json_name = ''
         tra_pro = {}
         if hasattr(self, 'name'):
-            json_name = "./text_result/" + self.name + ".json"
+            json_name = "./result/text_" + self.name + ".json"
             tra_pro['name'] = self.name
 
         if hasattr(self, 'port'):
