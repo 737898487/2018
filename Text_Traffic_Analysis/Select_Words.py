@@ -3,7 +3,7 @@ import string
 import numpy as np
 import math
 import codecs
-from Packet_Marking import *
+from Text_Traffic_Analysis.Packet_Marking import *
 
 def init_word_weight(word_set):
     # 定义词权重供筛选Top使用

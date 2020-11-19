@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Needleman_Wunsch import Needleman_Wunsch_Merge
+from Text_Traffic_Analysis.Needleman_Wunsch import Needleman_Wunsch_Merge
 
 def read_word_dic_file(path):
     # 读取写入关键词集合的文件

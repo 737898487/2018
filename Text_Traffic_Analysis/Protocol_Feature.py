@@ -6,7 +6,7 @@ import json
 import dpkt
 import os
 import numpy as np
-from Select_Words import match_Regular_Expression, remove_marks
+from Text_Traffic_Analysis.Select_Words import match_Regular_Expression, remove_marks
 
 def find_longest_substring(s1,s2):
     m = [[0 for i in range(len(s2) + 1)] for j in range(len(s1) + 1)]  # 生成0矩阵，为方便后续计算，比字符串长度多了一列

@@ -3,10 +3,10 @@
 
 import configparser
 import os
-from Packet_Segment import pkt_seg_by_delimiters
-from Select_Words import top_words_set, select_key_words
-from Format_Extract import infer_protocol_format
-from Protocol_Feature import get_traffic_feature
+from Text_Traffic_Analysis.Packet_Segment import pkt_seg_by_delimiters
+from Text_Traffic_Analysis.Select_Words import top_words_set, select_key_words
+from Text_Traffic_Analysis.Format_Extract import infer_protocol_format
+from Text_Traffic_Analysis.Protocol_Feature import get_traffic_feature
 
 # def if_file_exist(PATH):
 #     overwrite_flag = False
