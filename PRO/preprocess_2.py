@@ -4,6 +4,7 @@ from libs.new_preprocess import *
 import os
 import dpkt
 from libs.packet_recombination import write_biflow_to_file
+from libs.split_pcap import split_by_packet
 
 
 def parse(src_path, dst_path, remove, flow_packets):
@@ -52,8 +53,11 @@ def parse(src_path, dst_path, remove, flow_packets):
                 writer.writepkt(pkt=p[1], ts=p[0])
             f_new.close()
             # 去重传
-            if remove:
+            if remove and (num == 0 or num == 1):
                 write_biflow_to_file(work_path + '\\' + str(i) + '.pcap')
+            if num == 1 or num == 3:  # 对文本类提取前3个报文
+                split_by_packet(work_path + '\\' + str(i) + '.pcap', work_path, str(i) + '.pcap', [1,2,3])
+
 
 if __name__ == '__main__':
     path = "D:\\协议逆向\\原始zip\\新建文件夹\\手机淘宝android1-100"

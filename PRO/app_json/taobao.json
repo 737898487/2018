@@ -1,8 +1,0 @@
-{
-"taobao": {
-    "tcp_port": [80, 443],
-    "tcp_flow": [2, 1],
-    "udp_port": "None",
-    "udp_flow": -1
-}
-}

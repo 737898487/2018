@@ -1,8 +1,0 @@
-{
-"pptv_android": {
-    "tcp_port": 80,
-    "tcp_flow": 10,
-    "udp_port": "None",
-    "udp_flow": -1
-}
-}

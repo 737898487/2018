@@ -1,8 +1,0 @@
-{
-"douyu_android": {
-    "tcp_port": 8080,
-    "tcp_flow": 1,
-    "udp_port": "None",
-    "udp_flow": -1
-}
-}
