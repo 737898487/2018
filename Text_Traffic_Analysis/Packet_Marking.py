@@ -55,10 +55,10 @@ def get_word_index(data, word):
     locations = [it.start() for it in iters]
     if len(locations) != 1:
         for i in locations:
-            if 64 < data[i - 1] < 91 or 96 < data[i - 1] < 123: # word是另一个字符串的子串
+            if chr(data[i - 1]).isalpha():  # word是另一个字符串的子串
                 # print("{0} location is sub".format(i))
                 index = -1
-            elif 64 < data[i + len(word)] < 91 or 96 < data[i + len(word)] < 123:
+            elif chr(data[i + len(word)]).isalpha():
                 # print("{0} location is sub".format(i))
                 index = -1
             else:
@@ -89,7 +89,6 @@ def word_direction(word_set, datapath, mode):
                     elif data in dataset_back:
                         direction.append(backward)
                 else:
-                    # print("word don't find in this data.")
                     continue
             else:
                 index = data.find(w[0])
@@ -99,7 +98,6 @@ def word_direction(word_set, datapath, mode):
                     elif data in dataset_back:
                         direction.append(backward)
                 else:
-                    # print("word don't find in this data.")
                     continue
         # print("No." + str(w[2]) +" word:" + str(w[0])[1:] +" forward count:" + str(direction.count(forward)) + " backward count:" + str(direction.count(backward)))
         if direction.count(forward) == 0:
@@ -109,10 +107,6 @@ def word_direction(word_set, datapath, mode):
             # if direction.count(forward) / len(dataset_for) > 0.3:
                 num_for.append(w[2])
         else:
-            # if direction.count(forward) > direction.count(backward):
-            #     num_for.append(w[2])
-            # else:
-            #     num_back.append(w[2])
             if direction.count(forward)/len(dataset_for) < 0.1 and direction.count(backward) != 0: # 该关键词在前向报文集中出现次数很少
                 num_back.append(w[2])
             elif direction.count(backward)/len(dataset_back) < 0.1 and direction.count(forward) != 0: # 该关键词在后向报文集中出现次数很少
@@ -144,7 +138,6 @@ def packets_mark_with_words(p_outpath, data_set, words):
             index = data.find(x[0])
             if index == -1:
                 continue
-                # and data[index:index + len(x[0])] == x[0]
             elif code[index] == 0:
                 for k in range(index, index + len(x[0])):
                     code[k] = x[2]
@@ -158,20 +151,9 @@ def packets_mark_with_words(p_outpath, data_set, words):
                     set(code[index:index + len(x[0])])) > 1:
                 for k in range(index, index + len(x[0])):
                     code[k] = x[2]
-            # elif code[index] != 0 :
-            #     start_index = index
-            #     while code[index] != 0:
-            #         start_index += 1
-            #         index = data.find(x[0], start_index)
-            #     if index == -1:
-            #         continue
-            #     else:
-            #         for k in range(index, index + len(x[0])):
-            #             code[k] = x[2]
             else:
                 for k in range(index, index + len(x[0])):
                     code[k] = x[2]
-        # print(code)
         pre_c = 0
         data_token = b''
         for c, k in zip(code, range(len(code))):
@@ -189,8 +171,6 @@ def packets_mark_with_words(p_outpath, data_set, words):
 
         data_token = data_token[:-1]
         data_token += b"\n"
-        # print(data_token)
-
         fp.write(data_token)
     fp.close()
     print("[info] {0}-packets Mark with Keywords successfully.".format(len(data_set)))

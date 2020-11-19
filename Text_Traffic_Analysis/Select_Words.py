@@ -62,17 +62,6 @@ def top_words_set(seg_out_path, words_path):
     # 提取分段词集并定义权重筛选top关键词主函数
     newf = open(words_path, 'w')
     newf.close()
-    # def no_http(word):
-    #     # 将包含http协议的关键词去除
-    #     http_set = ['host', 'referer', 'user-agent', 'last-modified', 'server','keep-alive', 'close', 'no-cache',
-    #                 'connection', 'content','cache-control', 'accept-', 'accept', 'http', 'gmt',
-    #                 'etag', 'range', 'icy-metadata', 'pragma', 'expires', 'via', 'post', '200 ok', 'get']
-    #     for w in http_set:
-    #         if w in word.lower():
-    #             return False
-    #         else:
-    #             continue
-    #     return True
 
     def no_symbol(word):
         symbol = "!#$@%()*+,<>[\]{|}'~:`\""
@@ -117,13 +106,6 @@ def top_words_set(seg_out_path, words_path):
                 if not w.isdigit() and 2 < len(w) < 25 and not is_version_or_ip(w):
                     if no_symbol(w):
                         word_set.append(w)
-                # if not w.isdigit() and no_symbol(w) and w.count('.') <2: # 不完全是数字，不包含某些符号，.统计数小于2个
-                #     if mode == 'common':
-                #         if 2 < len(w) < 25:
-                #             word_set.append(w)
-                #     elif mode == 'app':
-                #         if 2 < len(w) < 25 and (not bool(re.search(r'\d', w))): # 规定长度范围
-                #             word_set.append(w)
                 else:
                     continue
         f.close()
@@ -189,39 +171,6 @@ def top_words_set(seg_out_path, words_path):
     print("[info] Select top-150 words and define word's weight successfully")
     return tagged_weighted_word
 
-# def suijixingjisuan(tagged_words, datapath, datasize):
-#     flow_fre = {}
-#     for word in tagged_words:
-#         if word not in flow_fre.keys():
-#             flow_fre[word] = 0
-#     i = 1
-#     while 1:
-#         try:
-#             f = open(datapath + str(i) + ".pcap", "rb")
-#             pcap = dpkt.pcap.Reader(f)
-#
-#             temp_data = b''
-#             for ts, buf in pcap:
-#                 eth = dpkt.ethernet.Ethernet(buf)
-#                 ip = eth.data
-#                 tcp = ip.data
-#                 data = tcp.data
-#                 temp_data += data
-#             for w in flow_fre.keys():
-#                 if temp_data.find(w.encode()) != -1:
-#                     flow_fre[w] += 1
-#         except:
-#             print("Something wrong with Packet num-{0}, lost or error".format(i))
-#
-#         i += 1
-#         if i > datasize:
-#             break
-#
-#     for key, value in flow_fre.items():
-#         flow_fre[key] = value / datasize
-#
-#     return flow_fre
-
 def select_key_words(tagged_words, datapath, p_outpath, mode):
     # # 所有关键词集
     # print("\n[out] Final Keywords:(Token No., <Words, Weight>)")
@@ -234,7 +183,6 @@ def select_key_words(tagged_words, datapath, p_outpath, mode):
     for w in tagged_words:  # 关键词筛选
         if w[1] > 0:
             final_words.append(w)
-
 
     # print("\n[out] Final Keywords:(Token No., <Words, Weight>)")
     # print('-' * 40)
