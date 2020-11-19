@@ -1,8 +1,0 @@
-{
-"hpjy": {
-    "tcp_port": 17500,
-    "tcp_flow": 1,
-    "udp_port": "All",
-    "udp_flow": 1
-}
-}

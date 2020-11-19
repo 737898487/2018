@@ -1,8 +1,0 @@
-{
-"wzry": {
-    "tcp_port": "All",
-    "tcp_flow": 1,
-    "udp_port": "All",
-    "udp_flow": 1
-}
-}

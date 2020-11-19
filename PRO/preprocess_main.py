@@ -2,22 +2,23 @@
 
 def preprocess(src_path,
                dst_path,
-               app_name=None,
-               method=2,
-               keep_only_app=False,
-               remove=False,
+               remove=True,
                flow_packets=100):
-    if method == 1:
-        # old method
-        from preprocess_1 import parse
-        parse(src_path, dst_path, app_name, keep_only_app=keep_only_app, remove=remove, flow_packets=flow_packets)
-    else:
         # new method(cluster)
+<<<<<<< HEAD
         from PRO.preprocess_2 import parse
         parse(src_path, dst_path, remove=remove, flow_packets=flow_packets)
+=======
+        from preprocess_2 import parse
+        parse(src_path, dst_path,  remove=remove, flow_packets=flow_packets)
+>>>>>>> 5361092b1ce595664c3b6c44d898814129d7f6d9
 
 
 if __name__ == '__main__':
-    path = "D:\\协议逆向\\原始zip\\新建文件夹\\youku"
+    path = "D:\\协议逆向\\原始zip\\测试流量\\王者荣耀"
     path_dst = "D:\\协议逆向\\原始zip\\新建文件夹\\used"
-    preprocess(path, path_dst, app_name="youku")
+    import time
+    start = time.time()
+    preprocess(path, path_dst)
+    end = time.time()
+    print("processing time:%.2f seconds" % (end - start))

@@ -1,8 +1,0 @@
-{
-"iqiyi": {
-    "tcp_port": [80],
-    "tcp_flow": [1],
-    "udp_port": [19311],
-    "udp_flow": [5]
-}
-}
