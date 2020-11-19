@@ -1,17 +1,16 @@
 #!/usr/bin/python
 #coding:utf-8
 import os
-import Bin_Traffic_Analysis.readpcap as readpcap
-import Bin_Traffic_Analysis.parse
+import Bin_Traffic_Analysis.Read_Pcap as readpcap
+import Bin_Traffic_Analysis.Bin_Traffic_Parse
 import Bin_Traffic_Analysis.Needleman as Needleman
 import threading 
 import multiprocessing  
-import Bin_Traffic_Analysis.Extract as Extract 
+import Bin_Traffic_Analysis.Extract_Feature as Extract
 import collections
-import Bin_Traffic_Analysis.gl
+import Bin_Traffic_Analysis.Global_Var
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Executor
 import warnings
-
 
 def MultiprocessingNeedleman(key,seqs):
 
@@ -30,7 +29,7 @@ def MultiprocessingNeedleman(key,seqs):
 
     return
 
-def BinRe(data_input,name):
+def Bin_Re(data_input,name):
     warnings.filterwarnings("ignore")
     # data path
     if not os.path.exists("./result"):

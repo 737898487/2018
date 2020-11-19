@@ -10,12 +10,7 @@ def Text_Re(DATA_PATH, MODE, NAME):
 
     if os.path.exists(os.path.join(DATA_PATH, "text_tcp/0")):
         DATA_PATH += "text_tcp/0/"
-    run_file_path = './run_file'
-    result_file_path = './result'
-    if not os.path.isdir(run_file_path):
-        os.mkdir(run_file_path)
-    if not os.path.isdir(result_file_path):
-        os.mkdir(result_file_path)
+
     SEG_OUT_PATH = './run_file/seg_' + NAME 
     WORDS_PATH = './run_file/words_' + NAME 
     P_OUT_PATH = './run_file/pattern_' + NAME 

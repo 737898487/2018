@@ -1,7 +1,7 @@
-from  Bin_Traffic_Analysis.ngram import n_gram_matrix
-from  Bin_Traffic_Analysis.feature  import GetFeaVet,GetAllVet,Clusters
-from Bin_Traffic_Analysis.readpcap import ReadPcapHex
-import Bin_Traffic_Analysis.gl as gl
+from Bin_Traffic_Analysis.Ngram import n_gram_matrix
+from Bin_Traffic_Analysis.Cluster_Feature import GetFeaVet, GetAllVet, Clusters
+from Bin_Traffic_Analysis.Read_Pcap import ReadPcapHex
+import Bin_Traffic_Analysis.Global_Var as gl
 
 def Parse(pacp_data,nums_itor):
     '''

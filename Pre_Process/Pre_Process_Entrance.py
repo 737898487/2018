@@ -58,9 +58,14 @@ def parse(src_path, dst_path, remove, flow_packets):
             if num == 1 or num == 3:  # 对文本类提取前3个报文
                 split_by_packet(os.path.join(work_path,str(i) + '.pcap'), work_path, str(i) + '.pcap', [1,2,3])
 
+def Pre_Process(src_path,
+                dst_path,
+                remove=True,
+                flow_packets=100):
+    parse(src_path, dst_path, remove=remove, flow_packets=flow_packets)
 
-if __name__ == '__main__':
-    path = "D:\\协议逆向\\原始zip\\新建文件夹\\手机淘宝android1-100"
-    dst_path = "D:\\协议逆向\\原始zip\\新建文件夹\\used"
-
-    parse(path, dst_path, False, 100)
+# if __name__ == '__main__':
+#     path = "D:\\协议逆向\\原始zip\\新建文件夹\\手机淘宝android1-100"
+#     dst_path = "D:\\协议逆向\\原始zip\\新建文件夹\\used"
+#
+#     parse(path, dst_path, False, 100)

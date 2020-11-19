@@ -1,7 +1,7 @@
 import dpkt
 import collections  # 
 import time
-import Bin_Traffic_Analysis.gl
+import Bin_Traffic_Analysis.Global_Var
 
 def ReadPcapHex(file_path,numspackets=3):
     '''

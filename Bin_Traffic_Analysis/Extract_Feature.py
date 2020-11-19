@@ -15,11 +15,11 @@ json 文件
 }
 """
 import os
-import Bin_Traffic_Analysis.feature as feature
-import Bin_Traffic_Analysis.ngram as ngram
+import Bin_Traffic_Analysis.Cluster_Feature as feature
+import Bin_Traffic_Analysis.Ngram as ngram
 import json
-import Bin_Traffic_Analysis.parse as parse
-import Bin_Traffic_Analysis.gl as gl
+import Bin_Traffic_Analysis.Bin_Traffic_Parse as parse
+import Bin_Traffic_Analysis.Global_Var as gl
 import collections
 from netzob.all import *
 from netzob.Model.Vocabulary.Types.TypeConverter import TypeConverter

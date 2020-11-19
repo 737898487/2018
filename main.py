@@ -1,9 +1,7 @@
-from PreProcess.preprocess_main import preprocess
-from Bin_Traffic_Analysis.bin import BinRe
-from Text_Traffic_Analysis.demon import Text_Re
+from Pre_Process.Pre_Process_Entrance import Pre_Process
+from Bin_Traffic_Analysis.Bin_Entrance import Bin_Re
+from Text_Traffic_Analysis.Text_Entrance import Text_Re
 import os
-
-
 
 def del_file(path):
     ls = os.listdir(path)
@@ -16,18 +14,24 @@ def del_file(path):
     os.rmdir(path)
 
 if __name__ == "__main__":
-
-    data_path = input("Please input data_path:")
-    name=input("Please input the name of application:") 
-    mode=input("common or app:")
-    # print(data_path)
+    data_path = input("Please input traffic_path:")
+    name = input("Please input the name of application:")
+    mode = input("Please input the type of traffic(common or app):")
     pre_output="./cache"
     if not os.path.exists(pre_output):
         os.mkdir(pre_output)
-    preprocess(data_path, pre_output)
+    Pre_Process(data_path, pre_output)
 
-    BinRe(pre_output,name)
-    if os.path.exists(os.path.join(pre_output,"text_tcp/0/")):
-        Text_Re(os.path.join(pre_output,"text_tcp/0/"),mode,name)
-    # del_file("./cache")
+    run_file_path = './run_file'
+    result_file_path = './result'
+    if not os.path.isdir(run_file_path):
+        os.mkdir(run_file_path)
+    if not os.path.isdir(result_file_path):
+        os.mkdir(result_file_path)
+
+    Bin_Re(pre_output, name)
+    Text_Re(pre_output, mode, name)
+
+    del_file("./cache")
+    del_file("./run_file")
     # os.rmdir("./cache")
