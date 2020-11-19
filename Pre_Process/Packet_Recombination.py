@@ -1,15 +1,8 @@
 import dpkt
 import socket
 
-# global stream_ordered
-# stream_ordered = {}
-#
-# global biflow
-# biflow = {}
-
 RST_MAXLEN = 1460
 LOST_MAXLEN = 5 * 1460
-
 
 class Packet(object):
 
@@ -80,13 +73,8 @@ def check_flow_complete(packets):
 
 
 def recombine_pkt(filename):
-    # global stream_ordered
-    # global biflow
-
     stream_ordered = {}
     biflow = {}
-    # ordered = {'s2d':[], 'd2s':[], 's2d_next_seq':0, 'd2s_next_seq':0}
-    # src = 0
     j = 0
     if_rst = {'s2d': 0, 'd2s': 0}
     with open(filename, 'rb') as f:
@@ -122,30 +110,10 @@ def recombine_pkt(filename):
                     ordered = stream_ordered[conn]
                     direction = 's2d'
 
-            # if ip.data.flags & dpkt.tcp.TH_RST != 0:
-            #     ordered[direction].append(current)
-            #     if abs(current.seq - ordered[direction + '_next_seq']) < RST_MAXLEN:
-            #         if_rst['s2d'] = 1
-            #         if_rst['d2s'] = 1
-            #     else:
-            #         pass
-            #     continue
-
             if len(ordered[direction]) == 0:
                 ordered[direction].append(current)
                 ordered[direction + '_next_seq'] = current.next_seq
 
-            # if current.src == src:
-            #     direction = 's2d'
-            # else:
-            #     direction = 'd2s'
-            #
-            # if len(ordered[direction]) == 0:
-            #     ordered[direction].append(current)
-            #     ordered[direction + '_next_seq'] = current.next_seq
-
-            # if current.seq == 389507473:
-            #     print("ddd")
             if current.seq >= ordered[direction + '_next_seq']:
                 # if check_dup(current, ordered[direction]):
                 if current not in ordered[direction]:
@@ -187,12 +155,3 @@ def write_biflow_to_file(filename):
                 writer.writepkt(pkt=p.data, ts=p.ts)
     except Exception as e:
         print(e)
-
-
-if __name__ == "__main__":
-    import os
-    path = "D:\\协议逆向\\filter\\filter_app_flow\\pptv_mobile\\text"
-    filelist = os.listdir(path)
-    for file in filelist:
-        write_biflow_to_file(os.path.join(path, file))
-        print(1)

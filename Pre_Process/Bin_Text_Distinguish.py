@@ -41,8 +41,3 @@ def printable(hex_list):
         else:
             return(False, 0.0)
     return (success, r)
-
-if __name__ == "__main__":
-    success, r = printable('47455420')
-    print("success =", success)
-    print("r = ", r)
