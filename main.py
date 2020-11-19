@@ -1,4 +1,4 @@
-from PRO.preprocess_main import preprocess
+from PreProcess.preprocess_main import preprocess
 from Re.bin import BinRe
 import os
 
@@ -11,7 +11,7 @@ def del_file(path):
             del_file(c_path)
         else:
             os.remove(c_path)
-
+    os.rmdir(path)
 
 if __name__ == "__main__":
 
@@ -23,4 +23,4 @@ if __name__ == "__main__":
 
     BinRe("./cache")
     del_file("./cache")
-    os.rmdir("./cache")
+    # os.rmdir("./cache")

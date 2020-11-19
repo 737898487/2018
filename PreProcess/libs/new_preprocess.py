@@ -1,6 +1,6 @@
 import dpkt
 import os
-from bin_text_test.bin_text import printable
+from ..bin_text_test.bin_text import printable
 
 
 class CountQuquadruple:

@@ -1,10 +1,10 @@
-from cluster.ngram import n_gram_matrix
-from cluster.feature import *
-from libs.new_preprocess import *
+from .cluster.ngram import n_gram_matrix
+from .cluster.feature import *
+from .libs.new_preprocess import *
 import os
 import dpkt
-from libs.packet_recombination import write_biflow_to_file
-from libs.split_pcap import split_by_packet
+from .libs.packet_recombination import write_biflow_to_file
+from .libs.split_pcap import split_by_packet
 
 
 def parse(src_path, dst_path, remove, flow_packets):
@@ -43,7 +43,7 @@ def parse(src_path, dst_path, remove, flow_packets):
             if not os.path.exists(os.path.join(new_dst_path, str(clu_list[i]))):
                 os.mkdir(os.path.join(new_dst_path, str(clu_list[i])))
             work_path = os.path.join(new_dst_path, str(clu_list[i]))
-            f_new = open(work_path + '\\' + str(i) + '.pcap', 'wb')
+            f_new = open(os.path.join(work_path,str(i) + '.pcap'), 'wb')
             writer = dpkt.pcap.Writer(f_new)
             temp_count = 0
             for p in ele[i][1]:
@@ -54,9 +54,9 @@ def parse(src_path, dst_path, remove, flow_packets):
             f_new.close()
             # 去重传
             if remove and (num == 0 or num == 1):
-                write_biflow_to_file(work_path + '\\' + str(i) + '.pcap')
+                write_biflow_to_file(os.path.join(work_path,str(i) + '.pcap'))
             if num == 1 or num == 3:  # 对文本类提取前3个报文
-                split_by_packet(work_path + '\\' + str(i) + '.pcap', work_path, str(i) + '.pcap', [1,2,3])
+                split_by_packet(os.path.join(work_path,str(i) + '.pcap'), work_path, str(i) + '.pcap', [1,2,3])
 
 
 if __name__ == '__main__':

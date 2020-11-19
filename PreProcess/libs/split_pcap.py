@@ -1,6 +1,7 @@
 import time
 import dpkt
 import collections  # 有序字典
+import os
 
 
 def split_by_packet(path_src, path_des, new_file_name, packet_list):
@@ -28,7 +29,7 @@ def split_by_packet(path_src, path_des, new_file_name, packet_list):
     index = 0
     length = len(packet_list) - 1
     # print("reading:", path_src)
-    f_new = open(path_des + '\\' + new_file_name, 'wb')
+    f_new = open(os.path.join(path_des,new_file_name), 'wb')
     writer = dpkt.pcap.Writer(f_new)
     for (ts, buf) in pcap:
         try:

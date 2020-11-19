@@ -5,13 +5,8 @@ def preprocess(src_path,
                remove=True,
                flow_packets=100):
         # new method(cluster)
-<<<<<<< HEAD
-        from PRO.preprocess_2 import parse
+        from .preprocess_2 import parse
         parse(src_path, dst_path, remove=remove, flow_packets=flow_packets)
-=======
-        from preprocess_2 import parse
-        parse(src_path, dst_path,  remove=remove, flow_packets=flow_packets)
->>>>>>> 5361092b1ce595664c3b6c44d898814129d7f6d9
 
 
 if __name__ == '__main__':
