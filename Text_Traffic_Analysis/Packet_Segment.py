@@ -117,10 +117,11 @@ def pkt_seg_by_delimiters(datapath, outpath):
                 key_words_list = segment_with_delimiter(data_text, len(data_text), seg_out, vote_file)
                 words += key_words_list
                 sum_packets += 1
-        except:
-            print("\n[error] Segment Process break abnormally.")
-            print("Something wrong with Packet {0}, lost or error".format(file_name))
-            break
+        except Exception as e:
+            # print("\n[error] Segment Process break abnormally.")
+            # print("Something wrong with Packet {0}, lost or error".format(file_name))
+            # break
+            print(e)
 
     print("[info] {0}-flow {1}-packet {2}-byte dealt".format(len(file_name_list), sum_packets, sum_byte))
     print("Packet Segment successfully.")

@@ -142,7 +142,7 @@ def top_words_set(seg_out_path, words_path):
     fh.close()
 
     # 读http 协议关键词典
-    http_dic_file = open('HTTP_dic', 'r')
+    http_dic_file = open('./Text_Traffic_Analysis/HTTP_dic', 'r')
     cnt = http_dic_file.read()
     http = cnt.split('\n')
     http_dic_file.close()

@@ -1,6 +1,8 @@
 from PreProcess.preprocess_main import preprocess
 from Re.bin import BinRe
+from Text_Traffic_Analysis.demon import Text_Re
 import os
+
 
 
 def del_file(path):
@@ -16,11 +18,17 @@ def del_file(path):
 if __name__ == "__main__":
 
     data_path = input("Please input data_path:")
+    name=input("Please input the name of application:") 
+    mode=input("common or app:")
     print(data_path)
-    if not os.path.exists("./cache"):
-        os.mkdir("./cache")
-    preprocess(data_path, "./cache")
+    pre_output="./cache"
+    if not os.path.exists(pre_output):
+        os.mkdir(pre_output)
+    preprocess(data_path, pre_output)
 
-    BinRe("./cache")
-    del_file("./cache")
+    BinRe(pre_output,name)
+   
+    if os.path.exists(os.path.join(pre_output,"text_tcp/0/")):
+        Text_Re(os.path.join(pre_output,"text_tcp/0/"),mode,name)
+    # del_file("./cache")
     # os.rmdir("./cache")

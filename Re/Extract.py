@@ -62,7 +62,7 @@ class Application:
             # res[k]=Transfrom (self.traffics[key].fea)
             res[k]=self.traffics[key].fea_clus
         json_res=json.dumps(res,indent=4,separators=(',',':'))
-        f=open("./result/"+self.name+".json",'w')
+        f=open("./result/bin_"+self.name+".json",'w')
         f.write(json_res)
         f.close()
     

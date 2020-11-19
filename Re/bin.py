@@ -30,10 +30,12 @@ def MultiprocessingNeedleman(key,seqs):
 
     return
 
-def BinRe(data_input):
+def BinRe(data_input,name):
     warnings.filterwarnings("ignore")
     # data path
-    app=data_input.split("/")[-1]
+    if not os.path.exists("./result"):
+        os.mkdir("./result")
+    app=name
     # data_input="./data/"+app
     files_tcp=os.listdir(data_input+"/bin_tcp")
     for i in range(len(files_tcp)):
@@ -76,11 +78,3 @@ def BinRe(data_input):
     #     out.close()
     #     conPool.submit(MultiprocessingNeedleman,key,res[key])
     # conPool.shutdown(True)
-
-if __name__ == "__main__":
-    # files=os.listdir("./Re/NewData")
-    # for i in range(len(files)):
-        # files[i]="./Re/NewData/"+files[i]
-        # BinRe(files[i])
-    BinRe("./Re/NewData/smb")
-    # print(gl.sum)

@@ -48,7 +48,7 @@ class traffic:
         self.flv = False
 
     def phrase_format_string(self):
-        http_dic_file = open('HTTP_dic', 'r')
+        http_dic_file = open('./Text_Traffic_Analysis/HTTP_dic', 'r')
         cnt = http_dic_file.read()
         http = cnt.split('\n')
         http_dic_file.close()
@@ -240,7 +240,7 @@ class traffic:
         if len(host) != 0:
             self.host = list(set(host))
 
-        user_agent_dic_file = open('User_Agent_dic', 'r')
+        user_agent_dic_file = open('./Text_Traffic_Analysis/User_Agent_dic', 'r')
         cnt = user_agent_dic_file.read()
         ua_reguExp = cnt.split('\n')
         user_agent_dic_file.close()
@@ -445,7 +445,7 @@ class traffic:
         json_name = ''
         tra_pro = {}
         if hasattr(self, 'name'):
-            json_name = "./result/" + self.name + ".json"
+            json_name = "./text_result/" + self.name + ".json"
             tra_pro['name'] = self.name
 
         if hasattr(self, 'port'):
