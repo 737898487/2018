@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import configparser
 import os
 from Text_Traffic_Analysis.Packet_Segment import pkt_seg_by_delimiters
 from Text_Traffic_Analysis.Select_Words import top_words_set, select_key_words
 from Text_Traffic_Analysis.Format_Extract import infer_protocol_format
 from Text_Traffic_Analysis.Protocol_Feature import get_traffic_feature
 
-def Text_Re(DATA_PATH,MODE,NAME):
+def Text_Re(DATA_PATH, MODE, NAME):
 
+    if os.path.exists(os.path.join(DATA_PATH, "text_tcp/0")):
+        DATA_PATH += "text_tcp/0/"
     run_file_path = './run_file'
     result_file_path = './result'
     if not os.path.isdir(run_file_path):
