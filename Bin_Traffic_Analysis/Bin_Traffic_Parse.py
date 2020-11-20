@@ -36,7 +36,7 @@ def Parse(pacp_data,nums_itor):
     gl.res.update(res_clus)
     
     #进行迭代
-    if len(itor_pkts)>100 and nums_itor<4:
+    if len(itor_pkts)>10 and nums_itor<4:
         Parse(itor_pkts,nums_itor+1)
     return gl.res
 
@@ -67,7 +67,7 @@ def  Denoising(pacp_data,fea_vec):
         print(str(position)+":"+str(all_frequency)+" ",fre)
         if all_frequency>gl.threshold_denoise:
             denoise[position]=fre
-        if all_frequency>gl.threshold_itor and all_frequency<gl.threshold_denoise and position < 5:
+        if all_frequency>gl.threshold_itor and all_frequency<gl.threshold_denoise and position < 4:
             itor[position]=fre
     # 去除噪声
     if len(denoise) !=0 :

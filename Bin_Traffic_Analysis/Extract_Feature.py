@@ -1,19 +1,3 @@
-"""
-json 文件 
-{
-    name:应用名称，
-    numsoftraffic:业务流个数，
-    {
-        port:
-        {
-            content:
-            packetnums:
-            offset:
-            direction:
-        },……
-    }(一个业务流一个特征集)
-}
-"""
 import os
 import Bin_Traffic_Analysis.Cluster_Feature as feature
 import Bin_Traffic_Analysis.Ngram as ngram
@@ -59,7 +43,6 @@ class Application:
             res["sports"]=list(self.sports)
         for key in self.traffics.keys():
             k=key.split('/')[-2]+key.split('/')[-1]
-            # res[k]=Transfrom (self.traffics[key].fea)
             res[k]=self.traffics[key].fea_clus
         json_res=json.dumps(res,indent=4,separators=(',',':'))
         f=open("./result/bin_"+self.name+".json",'w')
@@ -127,9 +110,9 @@ class Traffic:
         res=parse.Parse(pcap_data,0)
         features=dict()
         for key in res.keys():
-            if len(res[key])>3:
-                features[key]=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
-                print(features[key]," ",len(res[key]))
+            # if len(res[key])>3:
+            features[key]=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
+            print(features[key]," ",len(res[key]))
                 # gl.sum+=len(res[key])
 
         rows=[]
@@ -175,45 +158,6 @@ def TransfromAutomata(features:collections.OrderedDict()):
             feature+="-"+features[position][0].hex()
             flag=position+1
     return feature    
-
-def TransfromClus(feature):
-    pass
-def Transfrom(fea_vector:dict()):
-    res=dict()
-    count=0
-    value_count=-1
-    v=list(fea_vector.keys())
-    for value in fea_vector.values():
-        value_count+=1
-        postions=list(value.keys())
-        print(postions)
-        if len(postions)==0:
-            continue
-        offset=postions[0]
-        index=postions[0]
-        fea_value=value[offset][0]
-        for i  in range(1,len(postions)):
-            if postions[i]-index==1 and len(value[postions[i]])==1:
-                index=postions[i]
-                fea_value=fea_value+value[postions[i]][0]
-            else:
-                res[count]={
-                    "value":fea_value,
-                    "offset":offset,
-                    "packetnum":v[value_count]
-                }
-                count+=1
-                fea_value=value[postions[i]][0]
-                offset=postions[i]
-                index=postions[i]            
-            if i==len(postions)-1:
-                res[count]={
-                    "value":fea_value,
-                    "offset":offset,
-                    "packetnum":v[value_count]
-                }
-                count+=1
-    return res
 
 def isvalid(feature:str):
     if len(feature)==1:
