@@ -12,7 +12,7 @@ def n_gram_matrix(pcap_data_bin, n):# pcap_dict 2
     else:
         data=pcap_data_bin.values()
     for seq in data:
-        for i in range(32):
+        for i in range(16):
             temp = seq[i:i+n]
             if pkt == 0: # 第一个包
                 if not temp in matrix[0]:

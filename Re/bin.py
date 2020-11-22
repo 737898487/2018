@@ -1,14 +1,14 @@
 #!/usr/bin/python
 #coding:utf-8
 import os
-import readpcap
-import parse
-import Needleman
+import Re.readpcap as readpcap
+import Re.parse
+import Re.Needleman as Needleman
 import threading 
 import multiprocessing  
-import Extract
+import Re.Extract as Extract 
 import collections
-import gl
+import Re.gl
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Executor
 import warnings
 
@@ -78,5 +78,9 @@ def BinRe(data_input):
     # conPool.shutdown(True)
 
 if __name__ == "__main__":
-    BinRe("./Re/data/明日之后安卓")
+    # files=os.listdir("./Re/NewData")
+    # for i in range(len(files)):
+        # files[i]="./Re/NewData/"+files[i]
+        # BinRe(files[i])
+    BinRe("./Re/NewData/smb")
     # print(gl.sum)
