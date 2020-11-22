@@ -445,7 +445,8 @@ class traffic:
 
     def write_json(self):
         json_name = ''
-        tra_pro = {}
+        # tra_pro = {}
+        tra_pro=collections.OrderedDict()
         if hasattr(self, 'name'):
             json_name = "./result/text_" + self.name + ".json"
             tra_pro['name'] = self.name
