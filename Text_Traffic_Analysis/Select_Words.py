@@ -130,7 +130,6 @@ def top_words_set(seg_out_path, words_path):
                 unk_count += 1
             data.append(index)
         count[0][1] = unk_count
-        # reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
         return count, dictionary
 
     out_words = read_pkt_seg_data(seg_out_path)
@@ -158,7 +157,6 @@ def top_words_set(seg_out_path, words_path):
             init_w_count.append(wc)
 
     weighted_word += init_word_weight(init_w_count)  # delete 'Other Words'
-    # print(weighted_word)
     tagged_weighted_word = [] # 结构：关键词，词权重，编号i
     for c, i in zip(weighted_word, range(1, len(weighted_word)+1)):
         try:

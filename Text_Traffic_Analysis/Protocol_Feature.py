@@ -156,10 +156,8 @@ class traffic:
                             temp.append(tcp.dport)
                 temp_sport.append(temp[0])
                 temp_dport.append(temp[1])
-            except:
-                print("\n[error] Segment Process break abnormally.")
-                print("Something wrong with Packet num-{0}, lost or error".format(file_name))
-                break
+            except Exception as exc:
+                print(exc)
 
         spco = collections.Counter(temp_sport)
         dpco = collections.Counter(temp_dport)
@@ -295,6 +293,8 @@ class traffic:
                 num = ff.split('-->')[0:-1]
                 if len(num) > 5:
                     temp_ff.append(ff)
+                elif self.mode == 'common':
+                    temp_ff.append(ff)
             temp_ff.sort(key = lambda x :len(x), reverse=True)
             if len(temp_ff) > 0:
                 j = 1
@@ -334,7 +334,9 @@ class traffic:
             temp_bf = []
             for bf in self.backward_formats:
                 num = bf.split('-->')[0:-1]
-                if len(num) > 6:
+                if len(num) > 5:
+                    temp_bf.append(bf)
+                elif self.mode == 'common':
                     temp_bf.append(bf)
             temp_bf.sort(key=lambda x: len(x), reverse=True)
             if len(temp_bf) > 0:
