@@ -75,6 +75,8 @@ def Clusters(pcap_data,X,nums_itor,max_clus=15):
     num = 0       # 最终聚类数
     final_y = np.array([]) #聚类结果
     for n in range(2, max_clus):
+        if len(X)<n:
+            break
         res = KmeansMy(X, n)
         if sum(res)==0:
             final_y=res
@@ -89,7 +91,7 @@ def Clusters(pcap_data,X,nums_itor,max_clus=15):
             final_y = res
         if temp >= 0.9:
             break
-        print(n, '  ', temp)
+        # print(n, '  ', temp)
      
 
     split_dict = {}

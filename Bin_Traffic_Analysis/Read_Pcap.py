@@ -81,6 +81,49 @@ def ReadPcaps(files_path,numspackets=3):
     print("读取的包总数为：", count)
     return all_pcap_data ,sports,dports
 
+def ReadPcapsSplice(files_path,numspackets=3):
+    all_pcap_data=collections.OrderedDict() # 有序字典,存十六进制形式
+    all_pcap_data["1"]=[]
+    sports=set()# 客户端端口
+    dports=set()# 服务器端口
+    count = 0
+    for file_path in files_path:
+        f = open(file_path, 'rb')
+        splicedata=b""
+        pcap = dpkt.pcap.Reader(f)
+        index=0
+        sip=0
+        for (ts, buf) in pcap:
+            try:
+                eth = dpkt.ethernet.Ethernet(buf) 
+                if not isinstance(eth.data, dpkt.ip.IP): 
+                    print(count)
+                    continue
+                ip = eth.data
+                s=ip
+                transf_data = ip.data 
+                if not len(transf_data.data): 
+                    continue
+                if sip==0:
+                    sip=ip.src
+                if sip==ip.src:
+                    sports.add(transf_data.sport)
+                    dports.add(transf_data.dport)
+                else:
+                    sports.add(transf_data.dport)
+                    dports.add(transf_data.sport)
+                count += 1
+                index+=1
+                splicedata+=transf_data.data[0:16]+b"-"
+                if index==numspackets:
+                    break
+            except Exception as err:
+                print("[error] %s" % err)
+        all_pcap_data["1"].append(splicedata)    
+        f.close()
+    print("读取的包总数为：", count)
+    return all_pcap_data ,sports,dports
+
 def ReadAllPcap(files_path,numspackets=3):# 所有流前三个包
     all_pcap_data=collections.OrderedDict() # 有序字典,存十六进制形式
     count = 0

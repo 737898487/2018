@@ -73,30 +73,30 @@ def NeedlemanNodes(rightNode:Tree,leftNode:Tree,resultNode:Tree):
     back[0][0]=STOP
     rightList=list()
     leftList=list()
-    newRightSeq=""
-    newLeftSeq=""
+    newRightSeq=b""
+    newLeftSeq=b""
     i=M-1
     j=N-1
     
     while i>0 or j>0:
         if back[i][j]==DIAGONAL:
-            newRightSeq=rightNode.getValue()[i-1]+newRightSeq
-            newLeftSeq=leftNode.getValue()[j-1]+newLeftSeq
+            newRightSeq=rightNode.getValue()[i-1].to_bytes(1,sys.byteorder)+newRightSeq
+            newLeftSeq=leftNode.getValue()[j-1].to_bytes(1,sys.byteorder)+newLeftSeq
             i-=1
             j-=1
         elif back[i][j]==LEFT:
-            newRightSeq=rightNode.getValue()[i-1]+newRightSeq
-            newLeftSeq="_"+newLeftSeq
+            newRightSeq=rightNode.getValue()[i-1].to_bytes(1,sys.byteorder)+newRightSeq
+            newLeftSeq=b"_"+newLeftSeq
             i-=1
             leftList.append(j)
         elif back[i][j]==UP:
-            newLeftSeq=leftNode.getValue()[j-1]+newLeftSeq
-            newRightSeq="_"+newRightSeq
+            newLeftSeq=leftNode.getValue()[j-1].to_bytes(1,sys.byteorder)+newLeftSeq
+            newRightSeq=b"_"+newRightSeq
             j-=1
             rightList.append(i)
         elif back[i][j]==STOP:
-            newRightSeq=rightNode.getValue()[i-1]+newRightSeq
-            newLeftSeq=leftNode.getValue()[j-1]+newLeftSeq
+            newRightSeq=rightNode.getValue()[i-1].to_bytes(1,sys.byteorder)+newRightSeq
+            newLeftSeq=leftNode.getValue()[j-1].to_bytes(1,sys.byteorder)+newLeftSeq
             i-=1
             j-=1
     
@@ -163,7 +163,7 @@ def GetResultSeqs(node:Tree(),resultSeqs:list(),gaps:list()):
         for i in range(len(gaps)-1,-1,-1):
             if len(gaps[i])>0:
                 for c in gaps[i]:
-                    resultSeq=resultSeq[0:c]+"_"+resultSeq[c:]
+                    resultSeq=resultSeq[0:c]+b"_"+resultSeq[c:]
         resultSeqs.append(resultSeq)
         return
     

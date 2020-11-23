@@ -31,13 +31,14 @@ def Parse(pacp_data,nums_itor):
     fea_vec_clus=GetFeaVet(matrix_clu,pkt_num_clus,gl.threshold_ofen)
     X=GetAllVet(clu_pkts,fea_vec_clus,4)
     res_clus=Clusters(clu_pkts,X,nums_itor)
-    print(len(clu_pkts),len(itor_pkts))
+    # print(len(clu_pkts),len(itor_pkts))
     #结果合并
     gl.res.update(res_clus)
     
     #进行迭代
     if len(itor_pkts)>10 and nums_itor<4:
         Parse(itor_pkts,nums_itor+1)
+    
     return gl.res
 
 
@@ -64,7 +65,7 @@ def  Denoising(pacp_data,fea_vec):
         for value in item[1]:
             all_frequency+=value[1]
             fre.append(value[0])
-        print(str(position)+":"+str(all_frequency)+" ",fre)
+        # print(str(position)+":"+str(all_frequency)+" ",fre)
         if all_frequency>gl.threshold_denoise:
             denoise[position]=fre
         if all_frequency>gl.threshold_itor and all_frequency<gl.threshold_denoise and position < 4:
