@@ -31,11 +31,12 @@ class traffic:
     backward_word = [] # 解析后向协议格式得到的后向协议关键词
     forward_data = [] # 协议前向流报文集合
     backward_data = [] # 协议后向流报文集合
-    wrange = [] # 协议关键词位置范围信息
     del_word = [] # 程序运行过程中需要删除的协议关键词
     port = [] # 协议流量的常用端口
-    word_seq_in_stream = [] # 将关键词按照其在流中出现先后顺序
-    fix_pkt_num = {} # 保存在流中固定pkt中出现的关键词
+    # wrange = []  # 协议关键词位置范围信息
+    # word_seq_in_stream = [] # 将关键词按照其在流中出现先后顺序
+    # fix_pkt_num = {} # 保存在流中固定pkt中出现的关键词
+    feature_dic = {} # 流量特征组合
 
     def __init__(self, name, fformats, bformats, fdata, bdata, path, mode):
         self.name = name
@@ -446,7 +447,7 @@ class traffic:
     def write_json(self):
         json_name = ''
         # tra_pro = {}
-        tra_pro=collections.OrderedDict()
+        tra_pro = collections.OrderedDict()
         if hasattr(self, 'name'):
             json_name = "./result/text_" + self.name + ".json"
             tra_pro['name'] = self.name
