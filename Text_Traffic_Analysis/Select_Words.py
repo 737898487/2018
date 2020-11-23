@@ -130,7 +130,6 @@ def top_words_set(seg_out_path, words_path):
                 unk_count += 1
             data.append(index)
         count[0][1] = unk_count
-        # reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
         return count, dictionary
 
     out_words = read_pkt_seg_data(seg_out_path)
@@ -142,7 +141,7 @@ def top_words_set(seg_out_path, words_path):
     fh.close()
 
     # 读http 协议关键词典
-    http_dic_file = open('HTTP_dic', 'r')
+    http_dic_file = open('./Text_Traffic_Analysis/HTTP_dic', 'r')
     cnt = http_dic_file.read()
     http = cnt.split('\n')
     http_dic_file.close()
@@ -158,7 +157,6 @@ def top_words_set(seg_out_path, words_path):
             init_w_count.append(wc)
 
     weighted_word += init_word_weight(init_w_count)  # delete 'Other Words'
-    # print(weighted_word)
     tagged_weighted_word = [] # 结构：关键词，词权重，编号i
     for c, i in zip(weighted_word, range(1, len(weighted_word)+1)):
         try:

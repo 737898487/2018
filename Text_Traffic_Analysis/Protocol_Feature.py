@@ -48,7 +48,7 @@ class traffic:
         self.flv = False
 
     def phrase_format_string(self):
-        http_dic_file = open('HTTP_dic', 'r')
+        http_dic_file = open('./Text_Traffic_Analysis/HTTP_dic', 'r')
         cnt = http_dic_file.read()
         http = cnt.split('\n')
         http_dic_file.close()
@@ -156,10 +156,8 @@ class traffic:
                             temp.append(tcp.dport)
                 temp_sport.append(temp[0])
                 temp_dport.append(temp[1])
-            except:
-                print("\n[error] Segment Process break abnormally.")
-                print("Something wrong with Packet num-{0}, lost or error".format(file_name))
-                break
+            except Exception as exc:
+                print(exc)
 
         spco = collections.Counter(temp_sport)
         dpco = collections.Counter(temp_dport)
@@ -240,7 +238,7 @@ class traffic:
         if len(host) != 0:
             self.host = list(set(host))
 
-        user_agent_dic_file = open('User_Agent_dic', 'r')
+        user_agent_dic_file = open('./Text_Traffic_Analysis/User_Agent_dic', 'r')
         cnt = user_agent_dic_file.read()
         ua_reguExp = cnt.split('\n')
         user_agent_dic_file.close()
@@ -295,6 +293,8 @@ class traffic:
                 num = ff.split('-->')[0:-1]
                 if len(num) > 5:
                     temp_ff.append(ff)
+                elif self.mode == 'common':
+                    temp_ff.append(ff)
             temp_ff.sort(key = lambda x :len(x), reverse=True)
             if len(temp_ff) > 0:
                 j = 1
@@ -334,7 +334,9 @@ class traffic:
             temp_bf = []
             for bf in self.backward_formats:
                 num = bf.split('-->')[0:-1]
-                if len(num) > 6:
+                if len(num) > 5:
+                    temp_bf.append(bf)
+                elif self.mode == 'common':
                     temp_bf.append(bf)
             temp_bf.sort(key=lambda x: len(x), reverse=True)
             if len(temp_bf) > 0:
@@ -443,9 +445,10 @@ class traffic:
 
     def write_json(self):
         json_name = ''
-        tra_pro = {}
+        # tra_pro = {}
+        tra_pro=collections.OrderedDict()
         if hasattr(self, 'name'):
-            json_name = "./result/" + self.name + ".json"
+            json_name = "./result/text_" + self.name + ".json"
             tra_pro['name'] = self.name
 
         if hasattr(self, 'port'):

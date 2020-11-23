@@ -59,7 +59,6 @@ def format_info(sentence_list):
             sentence_slim[t] += 1
         except:
             sentence_slim[t] = 1
-    # print(sentence_slim)
     sorted_sentence = list(sentence_slim.items())
     sorted_sentence.sort(key=lambda x: x[1], reverse=True)
     print("[info] Total {} sentence".format(sum([x[1] for x in sorted_sentence])))

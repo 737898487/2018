@@ -39,11 +39,8 @@ def packets_split(datapath, mode):
                     else:
                         BP.append(data)
                 sum_packets += 1
-
-        except:
-            print("\n[error] Split Process break abnormally.")
-            print("Something wrong with Packet {0}, lost or error".format(file_name))
-            break
+        except Exception as exc:
+            print(exc)
 
     print("[info] Split {0}-flow {1}-packet {2}-forward packet {3}-backward packet".format(len(file_name_list), sum_packets, len(FP), len(BP)))
     print("Split Packets successfully.")
