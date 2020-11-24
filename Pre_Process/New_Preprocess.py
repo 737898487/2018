@@ -87,7 +87,7 @@ class PreProcess:
         tcp_list = sorted(tcp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_tcp_length = 0
         for flow in tcp_list:
-            if len(flow[1]) < 50:
+            if len(flow[1]) < 20:
                 break
             if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
                 self.text_tcp_flow_list.append(flow)
@@ -108,7 +108,7 @@ class PreProcess:
         udp_list = sorted(udp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_udp_length = 0
         for flow in udp_list:
-            if len(flow[1]) < 50:
+            if len(flow[1]) < 20:
                 break
             if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
                 self.text_udp_flow_list.append(flow)
