@@ -31,7 +31,7 @@ class PreProcess:
         self.bin_udp_flow_list = []
         self.bin_tcp_flow_list = []
 
-    def read_drop(self, path_src, count, ratio):
+    def read_drop(self, path_src, count, ratio, path_dst):
         '''
         读取一个pcap并选取其中占比前ratio的流
         :param path_src: pcap源路径
@@ -86,27 +86,41 @@ class PreProcess:
 
         tcp_list = sorted(tcp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_tcp_length = 0
+        if not os.path.exists(os.path.join(path_dst, "tls")):
+            os.mkdir(os.path.join(path_dst, "tls"))
+        path_dst_1 = os.path.join(path_dst, 'tls')
+        f_new_1 = open(os.path.join(path_dst_1, str(count) + '_tls.pcap'), 'wb')
+        writer_1 = dpkt.pcap.Writer(f_new_1)  # tls
+
+        if not os.path.exists(os.path.join(path_dst, "small_flow")):
+            os.mkdir(os.path.join(path_dst, "small_flow"))
+        path_dst_2 = os.path.join(path_dst, 'small_flow')
+        f_new_2 = open(os.path.join(path_dst_2, str(count) + '_small.pcap'), 'wb')
+        writer_2 = dpkt.pcap.Writer(f_new_2)
+
         for flow in tcp_list:
-            if len(flow[1]) < 20:
-                break
             if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
                 self.text_tcp_flow_list.append(flow)
             else:
                 if flow[1][0][1].data.data.dport == 443 and flow[1][0][1].data.data.data.hex()[:6] == '160301' or flow[1][0][1].data.data.data.hex()[:6] == '160303':
                     tls_count += 1  # except TLS1.2 or TLS1.3
                     for pkt in flow[1]:
+                        writer_1.writepkt(pkt=pkt[1], ts=pkt[0])
                         tls_size += len(pkt[1])
                 else:
                     self.bin_tcp_flow_list.append(flow)
             now_tcp_length += len(flow[1])
             if now_tcp_length / tcp_length > ratio:
-                break
+                for pkt in flow[1]:
+                    writer_2.writepkt(pkt=pkt[1], ts=pkt[0])
+        f_new_1.close()
 
         print("TLS flow count: %d" %tls_count)
         print("TLS ratio(TCP): %.2f" % (tls_size / tcp_size * 100), "%")
         print("TLS ratio(ALL): %.2f" % (tls_size / file_size * 100), "%")
         udp_list = sorted(udp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_udp_length = 0
+
         for flow in udp_list:
             if len(flow[1]) < 20:
                 break
@@ -116,16 +130,19 @@ class PreProcess:
                 self.bin_udp_flow_list.append(flow)
             now_udp_length += len(flow[1])
             if now_udp_length / udp_length > ratio:
-                break
+                for pkt in flow[1]:
+                    writer_2.writepkt(pkt=pkt[1], ts=pkt[0])
+        f_new_2.close()
 
-    def read_pcap_divide(self, src_path, ratio):
+
+    def read_pcap_divide(self, src_path, ratio, dst_path):
         path_list = os.listdir(src_path)
         count = 0
         for path in path_list:
             count += 1
-            if count > 200:
+            if count > 300:
                 break
-            self.read_drop(os.path.join(src_path, path), count, ratio)
+            self.read_drop(os.path.join(src_path, path), count, ratio, dst_path)
 
     def get_element(self):
         return (self.bin_tcp_flow_list, self.text_tcp_flow_list, self.bin_udp_flow_list, self.text_udp_flow_list)
