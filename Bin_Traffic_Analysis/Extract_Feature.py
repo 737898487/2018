@@ -115,7 +115,7 @@ class Traffic:
             Revalues=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
             if len(Revalues)>0:
                 features[key]=Revalues
-                print(features[key]," ",len(res[key]))
+                # print(features[key])
                 # gl.sum+=len(res[key])
 
         rows=[]
@@ -126,9 +126,9 @@ class Traffic:
                     rows.append(RawMessage(seq))
                 else:
                     out.append(seq)
-            symbols = Format.clusterByAlignment(rows,minEquivalence=60)
+            symbols = Format.clusterByAlignment(rows,minEquivalence=50)
             # Format.splitAligned(len(symbols))
-            print("-"*20)
+            # print("-"*20)
             for symbol in symbols:
                 fs=b""
                 l=symbol.fields.list
@@ -171,10 +171,10 @@ def isvalid(feature:str):
     def modify(feature):
         if feature.count(b"\x00")==len(feature):
             return b""
-        if len(feature)>6:
-            return feature[0:6]
-        else:
-            return feature
+        # if len(feature)>6:
+        #     return feature[0:6]
+        # else:
+        return feature
     ps=feature.split(b"-")
     f=[]
     for  p in ps:
@@ -195,6 +195,7 @@ def isvalid(feature:str):
 def Feature_optimization(features:list):
     
     res=list(set(features))
+    
     return  res
 
 def convert(fea):
