@@ -11,10 +11,7 @@ def Parse(pacp_data,nums_itor):
     return dict key：子类名称 value：子类报文
     '''
     # 参数定义
-    # global subclass_collection
-    # global res
     pkt_num=len(pacp_data)
-    print(pkt_num)
     
 
     #提取特征
