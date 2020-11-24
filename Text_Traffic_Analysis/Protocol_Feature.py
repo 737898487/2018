@@ -234,8 +234,10 @@ class traffic:
                     host.append(fls)
             else: # host字段无公共子串；fls只包含一个'.':那么提取出来的只可能是'.com','.cn'等顶级域名
                 for hostt in temp:
-                    respan = compile_host.search(hostt).span()
-                    host.append(hostt[respan[0]:respan[1]])
+                    respan = compile_host.search(hostt)
+                    if respan != None:
+                        respan =  respan.span()
+                        host.append(hostt[respan[0]:respan[1]])
         if len(host) != 0:
             self.host = list(set(host))
 
