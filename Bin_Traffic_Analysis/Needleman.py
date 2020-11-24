@@ -116,25 +116,18 @@ def SmithWunsh(seq1:str,seq2:str)->float:
     N=len(seq2)+1
     res=0
     lcs=[[0 for i in range(N)] for i in range(M)]
-    # back=[[0 for i in range(N)] for i in range(M)]
-    # Continous=[[0 for i in range(N)]for i in range(M)]
 
     for i in range(M):
         lcs[i][0]=0*i
-        # back[i][0]=LEFT    
     
     for i in range(N):
         lcs[0][i]=0*i
-        # back[0][i]=UP
     for i in range(1,M):
         for j in range(1,N):
             q=0
             if seq1[i-1]==seq2[j-1]:
-                # Continous[i][j]=Continous[i-1][j-1]+1
-                # q=2+Continous[i-1][j-1]*2
                 q=2
             else:
-                # Continous[i][j]=0
                 q=-1
             Max=max([lcs[i-1][j-1]+q,
                     lcs[i-1][j]-2,
@@ -163,7 +156,7 @@ def GetResultSeqs(node:Tree(),resultSeqs:list(),gaps:list()):
         for i in range(len(gaps)-1,-1,-1):
             if len(gaps[i])>0:
                 for c in gaps[i]:
-                    resultSeq=resultSeq[0:c]+b"_"+resultSeq[c:]
+                    resultSeq=resultSeq[0:c]+b"-"+resultSeq[c:]
         resultSeqs.append(resultSeq)
         return
     

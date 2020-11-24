@@ -91,9 +91,7 @@ def Clusters(pcap_data,X,nums_itor,max_clus=15):
             final_y = res
         if temp >= 0.9:
             break
-        # print(n, '  ', temp)
-     
-
+ 
     split_dict = {}
     pkt_list = []
     for pkt in pcap_data.values():

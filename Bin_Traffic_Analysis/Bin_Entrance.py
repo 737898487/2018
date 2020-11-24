@@ -35,9 +35,9 @@ def Bin_Re(data_input,name):
             pcaps_name[j]=files[i]+"/"+pcaps_name[j]
         if len(pcaps_name)>20:
             data[files[i]],sport,dport=readpcap.ReadPcapsSplice(pcaps_name,3)
-            # data[files[i]],sport,dport=readpcap.ReadPcaps(pcaps_name,3
             sports=sport|sports
             dports=dport|dports
+    
     application=Extract.Application(app,data,sports,dports)
     application.setTraffic()
     application.setTrafficFea(True)

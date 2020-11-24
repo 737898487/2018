@@ -82,8 +82,9 @@ def ReadPcaps(files_path,numspackets=3):
     return all_pcap_data ,sports,dports
 
 def ReadPcapsSplice(files_path,numspackets=3):
-    all_pcap_data=collections.OrderedDict() # 有序字典,存十六进制形式
-    all_pcap_data["1"]=[]
+    # all_pcap_data=collections.OrderedDict() # 有序字典,存十六进制形式
+    # all_pcap_data["1"]=[]
+    all_pcap_data=[]
     sports=set()# 客户端端口
     dports=set()# 服务器端口
     count = 0
@@ -119,7 +120,7 @@ def ReadPcapsSplice(files_path,numspackets=3):
                     break
             except Exception as err:
                 print("[error] %s" % err)
-        all_pcap_data["1"].append(splicedata)    
+        all_pcap_data.append(splicedata)    
         f.close()
     print("读取的包总数为：", count)
     return all_pcap_data ,sports,dports

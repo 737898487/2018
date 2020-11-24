@@ -28,7 +28,6 @@ class Application:
     def setTrafficFea(self,isclus=True):
         for key in self.data.keys():
             if isclus:
-            # self.traffics[key].GetAllFeas()
                 self.traffics[key].GetAllFeasClus()
             else:
                 self.traffics[key].GetAllFeas()
@@ -50,28 +49,26 @@ class Application:
         f.close()
     
 class Traffic:
-    def __init__(self,data):# data 为 key[1,2,3] value 为list()
+    def __init__(self,data):# data 为 []
         self.data=data
-        self.fea=dict() # 无聚类特征
-        self.fea_clus=dict() # 聚类特征
+        self.fea=[] # 无聚类特征
+        self.fea_clus=[] # 聚类特征
 
 
     def GetAllFeas(self):
     
-        for key in self.data.keys():
-            self.fea[key]=self.GetFea(self.data[key])
+        self.fea=self.GetFea(self.data)
         return
     
     def GetAllFeasClus(self):
-        for key in self.data.keys():
-            self.fea_clus[key]=self.ParseList(self.data[key])
+
+        self.fea_clus=self.ParseList(self.data)
         return
     
     def GetFea(self,data:list):
         pkt=len(data)
         matrix=ngram.n_gram_matrix(data,1)
         fea_vector=self.GetFeaVet(matrix,pkt,0.95)
-        # print(fea_vector)
         return fea_vector
 
     def GetFeaVet(self,matrix, pkt, threshold):
@@ -110,14 +107,11 @@ class Traffic:
         res=parse.Parse(pcap_data,0)
         features=dict()
         for key in res.keys():
-            # if len(res[key])>3:
-            # Revalues=TransfromAutomata(self.GetFea(Needleman.Needleman(res[key])))# key 为聚类名称
-            Revalues=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
+            Revalues=TransfromAutomata(self.GetFea(Needleman.Needleman(res[key])))# key 为聚类名称
+            # Revalues=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
+            # print(Revalues)
             if len(Revalues)>0:
                 features[key]=Revalues
-                # print(features[key])
-                # gl.sum+=len(res[key])
-
         rows=[]
         out=[]
         if len(features)>1:
@@ -127,8 +121,6 @@ class Traffic:
                 else:
                     out.append(seq)
             symbols = Format.clusterByAlignment(rows,minEquivalence=50)
-            # Format.splitAligned(len(symbols))
-            # print("-"*20)
             for symbol in symbols:
                 fs=b""
                 l=symbol.fields.list
@@ -143,14 +135,15 @@ class Traffic:
                 out.append(convert(fs))
         else:
             f=list(features.values())[0]
+            print(f)
             if f=="none":
                 out.append(f)
             else:
                 out.append(convert(isvalid(f)))
 
         print("*"*50)
-        out=Feature_optimization(out)
-        return out
+        reso=Feature_optimization(out)
+        return reso
 
 def TransfromAutomata(features:collections.OrderedDict()):
     feature=b""
@@ -171,10 +164,10 @@ def isvalid(feature:str):
     def modify(feature):
         if feature.count(b"\x00")==len(feature):
             return b""
-        # if len(feature)>6:
-        #     return feature[0:6]
-        # else:
-        return feature
+        if len(feature)>6:
+            return feature[0:6]
+        else:
+            return feature
     ps=feature.split(b"-")
     f=[]
     for  p in ps:
@@ -194,8 +187,10 @@ def isvalid(feature:str):
 
 def Feature_optimization(features:list):
     
-    res=list(set(features))
-    
+    for i in range(len(features)):
+        if features[i]=='' or features[i]=='--':
+            features[i]='none'
+    res=list(set(features)) 
     return  res
 
 def convert(fea):
