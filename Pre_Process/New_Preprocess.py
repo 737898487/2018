@@ -46,6 +46,10 @@ class PreProcess:
             print(e)
             pcap = dpkt.pcapng.Reader(f)  # 似乎有问题，目前只能读取pcap
         print("reading:", path_src)
+        file_size = 0
+        tls_size = 0
+        tcp_size = 0
+        tls_count = 0
         tcp_flow_dict = dict()
         udp_flow_dict = dict()
         tcp_length = 0
@@ -57,8 +61,11 @@ class PreProcess:
                     continue
                 ip = eth.data
                 transf_data = ip.data  # 传输层负载数据
+                if not len(transf_data):  # 如果传输层长度为0，则丢弃
+                    continue
                 if not len(transf_data.data):  # 如果应用层负载长度为0，即没有负载，则丢弃
                     continue
+                file_size += len(eth)
                 if ip.p == 17:  # udp
                     udp_length += 1
                     qua = CountQuquadruple(ip.src, ip.dst, ip.udp.sport, ip.udp.dport, count)
@@ -68,6 +75,7 @@ class PreProcess:
                         udp_flow_dict[qua].append((ts, eth))
                 elif ip.p == 6:  # tcp
                     tcp_length += 1
+                    tcp_size += len(eth)
                     qua = CountQuquadruple(ip.src, ip.dst, ip.tcp.sport, ip.tcp.dport, count)
                     if qua not in tcp_flow_dict:
                         tcp_flow_dict[qua] = [(ts, eth)]
@@ -85,13 +93,18 @@ class PreProcess:
                 self.text_tcp_flow_list.append(flow)
             else:
                 if flow[1][0][1].data.data.dport == 443 and flow[1][0][1].data.data.data.hex()[:6] == '160301' or flow[1][0][1].data.data.data.hex()[:6] == '160303':
-                    pass # except TLS1.2 or TLS1.3
+                    tls_count += 1  # except TLS1.2 or TLS1.3
+                    for pkt in flow[1]:
+                        tls_size += len(pkt[1])
                 else:
                     self.bin_tcp_flow_list.append(flow)
             now_tcp_length += len(flow[1])
             if now_tcp_length / tcp_length > ratio:
                 break
 
+        print("TLS flow count: %d" %tls_count)
+        print("TLS ratio(TCP): %.2f" % (tls_size / tcp_size * 100), "%")
+        print("TLS ratio(ALL): %.2f" % (tls_size / file_size * 100), "%")
         udp_list = sorted(udp_flow_dict.items(), key=lambda x: len(x[1]), reverse=True)
         now_udp_length = 0
         for flow in udp_list:
@@ -110,8 +123,8 @@ class PreProcess:
         count = 0
         for path in path_list:
             count += 1
-            # if count > 150:
-            #     break
+            if count > 200:
+                break
             self.read_drop(os.path.join(src_path, path), count, ratio)
 
     def get_element(self):
