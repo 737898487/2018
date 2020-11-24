@@ -2,40 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1aed3bde-6afc-4bdd-954e-89d9be20bc38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Bin_Entrance.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cluster/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Text_Traffic_Analysis/Text_Entrance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/preprocess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/preprocess.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/cf.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/douyu_android.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/ftp.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/hpjy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/http.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/iqiyi.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/lol.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/mrzh_android.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/pptv_android.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/taobao.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/tls.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/txvideo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/wzry.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_json/youku.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin_text_main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/generate_file.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cut_flow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_full_tcp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/move_file.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/new_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/new_preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/pcap_splitter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/read_pcap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/split_pcap.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/split_pcap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pcap_splitter_master/flow_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pcap_splitter_master/flow_split_http_tls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pcap_splitter_master/get_pcap_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pcap_splitter_master/pcap_splitter/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pcap_splitter_master/pcap_splitter/splitter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pcap_splitter_master/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocess_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocess_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocess_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/split_main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bin_Text_Distinguish.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bin_Text_Distinguish.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New_Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/New_Preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packet_Recombination.py" beforeDir="false" afterPath="$PROJECT_DIR$/Packet_Recombination.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pre_Process_Entrance.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pre_Process_Entrance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Split_Pcap.py" beforeDir="false" afterPath="$PROJECT_DIR$/Split_Pcap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/.idea/cluster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/.idea/cluster.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/Feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/Feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cluster/Ngram.py" beforeDir="false" afterPath="$PROJECT_DIR$/cluster/Ngram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/.idea/libs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libs/.idea/libs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libs/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libs/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/Extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Extract_Feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/Needleman.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Needleman.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/UPGMA/distance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/UPGMA/multialign.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/UPGMA/phylogeny.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/UPGMA/tree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/bin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Cluster_Feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/gl.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Global_Var.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/ngram.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Ngram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Bin_Traffic_Parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/readpcap.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Bin_Traffic_Analysis/Read_Pcap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/crossfire_android.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/hpjy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/hpjy_ios.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/lol_bin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/mmtls.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/mrzh.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/smb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/taobao.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/tls.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/udp.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/result/wzry.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Re/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Text_Traffic_Analysis/Format_Extract.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Text_Traffic_Analysis/Format_Extract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Text_Traffic_Analysis/Packet_Marking.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Text_Traffic_Analysis/Packet_Marking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Text_Traffic_Analysis/Packet_Segment.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Text_Traffic_Analysis/Packet_Segment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Text_Traffic_Analysis/Protocol_Feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Text_Traffic_Analysis/Protocol_Feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Text_Traffic_Analysis/Select_Words.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Text_Traffic_Analysis/Select_Words.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Text_Traffic_Analysis/demon.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -197,60 +219,36 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1550708780">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin_text_test/bin_text.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/new_preprocess.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="111" selection-start-line="111" selection-end-line="111" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/preprocess_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <marker date="1605612133737" expanded="true" signature="283:2402" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/split_pcap.py">
+        <entry file="file://$PROJECT_DIR$/New_Preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
               <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="e#1#12#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocess_main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -310,6 +308,7 @@
         <option value="$PROJECT_DIR$/preprocess_main.py" />
         <option value="$PROJECT_DIR$/libs/split_pcap.py" />
         <option value="$PROJECT_DIR$/libs/read_pcap.py" />
+        <option value="$PROJECT_DIR$/New_Preprocess.py" />
       </list>
     </option>
   </component>
@@ -545,10 +544,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.15951742" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.16117765" />
       <window_info id="Structure" order="1" sideWeight="0.5021097" side_tool="true" weight="0.12466488" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -645,13 +643,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app_json/http.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
@@ -666,27 +657,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/lol.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/ftp.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/douyu_android.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app_json/lol.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/ftp.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/douyu_android.json" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/pcap_splitter/splitter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -695,20 +668,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app_json/mrzh.json" />
-    <entry file="file://$PROJECT_DIR$/app_json/mrzh_android.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/wzry.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app_json/mrzh_android.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/wzry.json" />
     <entry file="file://$USER_HOME$/Desktop/libs/pcap_splitter.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/dpkt/dpkt.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -724,13 +685,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/hpjy.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app_json/hpjy.json" />
     <entry file="file://$USER_HOME$/Desktop/HTTPS/gcForest-master(自用)/test_example/demo_webpage-ca.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -738,48 +693,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/txvideo.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/iqiyi.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/taobao.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/cf.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/tls.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/pptv_android.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app_json/txvideo.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/iqiyi.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/taobao.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/cf.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/tls.json" />
+    <entry file="file://$PROJECT_DIR$/app_json/pptv_android.json" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/pcap_splitter/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -815,7 +734,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cluster/parse.py" />
-    <entry file="file://$PROJECT_DIR$/cluster/ngram.py">
+    <entry file="file://$PROJECT_DIR$/cluster/Ngram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
@@ -843,141 +762,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pcap_splitter_master/flow_split.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_json/youku.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cut_flow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster/feature.py">
+    <entry file="file://$PROJECT_DIR$/pcap_splitter_master/flow_split.py" />
+    <entry file="file://$PROJECT_DIR$/app_json/youku.json" />
+    <entry file="file://$PROJECT_DIR$/cut_flow.py" />
+    <entry file="file://$PROJECT_DIR$/cluster/Feature.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-152">
           <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/split_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/split_main.py" />
     <entry file="file://$PROJECT_DIR$/../main.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin_text_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/move_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/pcap_splitter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/packet_recombination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="179" selection-start-line="179" selection-end-line="179" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/split_pcap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#1#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/read_pcap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1691">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster/generate_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin_text_test/bin_text.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bin_text_main.py" />
+    <entry file="file://$PROJECT_DIR$/libs/move_file.py" />
+    <entry file="file://$PROJECT_DIR$/libs/pcap_splitter.py" />
+    <entry file="file://$PROJECT_DIR$/libs/packet_recombination.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess_1.py" />
+    <entry file="file://$PROJECT_DIR$/libs/split_pcap.py" />
+    <entry file="file://$PROJECT_DIR$/libs/read_pcap.py" />
+    <entry file="file://$PROJECT_DIR$/cluster/generate_file.py" />
+    <entry file="file://$PROJECT_DIR$/bin_text_test/bin_text.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess_main.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/ntpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -985,23 +793,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/new_preprocess.py">
+    <entry file="file://$PROJECT_DIR$/libs/new_preprocess.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess_2.py" />
+    <entry file="file://$PROJECT_DIR$/New_Preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
+        <state relative-caret-position="76">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1605612133737" expanded="true" signature="283:2402" ph="..." />
           </folding>
         </state>
       </provider>

@@ -1,10 +1,9 @@
-import os
-import dpkt
 from Pre_Process.cluster.Ngram import n_gram_matrix
 from Pre_Process.cluster.Feature import *
 from Pre_Process.New_Preprocess import *
 from Pre_Process.Packet_Recombination import write_biflow_to_file
 from Pre_Process.Split_Pcap import split_by_packet
+
 
 def parse(src_path, dst_path, remove, flow_packets):
     if not os.path.exists(os.path.join(dst_path, "text_udp")):
@@ -34,7 +33,7 @@ def parse(src_path, dst_path, remove, flow_packets):
             matrix = n_gram_matrix(pcap_data, 2)
             fea_vec = GetFeaVet(matrix, len(pcap_data), threshold=0.1)
             X = GetAllVet(pcap_data, fea_vec, port_weight=10)
-            clu_list = Clusters(pcap_data, X)
+            clu_list = Clusters(X)
         else:
             clu_list = [0] * len(pcap_data)
 

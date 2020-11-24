@@ -2,6 +2,7 @@ import dpkt
 import os
 from Pre_Process.Bin_Text_Distinguish import printable
 
+
 class CountQuquadruple:
     def __init__(self, src, dst, src_port, dst_port, count):
         self.ip_src = src
@@ -21,6 +22,7 @@ class CountQuquadruple:
 
     def __str__(self):
         return str(self.count) + "_" + str(int.from_bytes(self.ip_src,'little')) + "_" + str(int.from_bytes(self.ip_dst,'little')) + "_" + str(self.src_port) + "_" + str(self.dst_port)
+
 
 class PreProcess:
     def __init__(self):
@@ -82,7 +84,10 @@ class PreProcess:
             if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
                 self.text_tcp_flow_list.append(flow)
             else:
-                self.bin_tcp_flow_list.append(flow)
+                if flow[1][0][1].data.data.dport == 443 and flow[1][0][1].data.data.data.hex()[:6] == '160301' or flow[1][0][1].data.data.data.hex()[:6] == '160303':
+                    pass # except TLS1.2 or TLS1.3
+                else:
+                    self.bin_tcp_flow_list.append(flow)
             now_tcp_length += len(flow[1])
             if now_tcp_length / tcp_length > ratio:
                 break

@@ -1,10 +1,12 @@
 import os
+import sys
 import Bin_Traffic_Analysis.Cluster_Feature as feature
 import Bin_Traffic_Analysis.Ngram as ngram
 import json
 import Bin_Traffic_Analysis.Bin_Traffic_Parse as parse
 import Bin_Traffic_Analysis.Global_Var as gl
 import collections
+import Bin_Traffic_Analysis.Needleman as Needleman
 from netzob.all import *
 from netzob.Model.Vocabulary.Types.TypeConverter import TypeConverter
 from netzob.Model.Vocabulary.Types.BitArray import BitArray
@@ -35,8 +37,6 @@ class Application:
     def tojson(self):
         res=collections.OrderedDict()
         res["name"]=self.name
-        # print(self.sports)
-        # print(self.dports)
         if len(self.dports)<=4:
             res["dports"]=list(self.dports)
         if len(self.sports)<=4:
@@ -70,7 +70,7 @@ class Traffic:
     def GetFea(self,data:list):
         pkt=len(data)
         matrix=ngram.n_gram_matrix(data,1)
-        fea_vector=self.GetFeaVet(matrix,pkt,0.90)
+        fea_vector=self.GetFeaVet(matrix,pkt,0.95)
         # print(fea_vector)
         return fea_vector
 
@@ -111,75 +111,100 @@ class Traffic:
         features=dict()
         for key in res.keys():
             # if len(res[key])>3:
-            features[key]=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
-            print(features[key]," ",len(res[key]))
+            # Revalues=TransfromAutomata(self.GetFea(Needleman.Needleman(res[key])))# key 为聚类名称
+            Revalues=TransfromAutomata(self.GetFea(res[key]))# key 为聚类名称
+            if len(Revalues)>0:
+                features[key]=Revalues
+                print(features[key]," ",len(res[key]))
                 # gl.sum+=len(res[key])
 
         rows=[]
         out=[]
-        for seq in list(features.values()):
-            rows.append(RawMessage(seq.encode('utf-8')))
-        symbols = Format.clusterByAlignment(rows,minEquivalence=60)
-        # Format.splitAligned(len(symbols))
-        print("-"*20)
-        for symbol in symbols:
-            fs=""
-            l=symbol.fields.list
-            for d in l:
-                if d.domain.dataType.value:
-                    f=str(TypeConverter.convert(d.domain.dataType.value, BitArray,Raw))
-                    # print(f)
-                    f=isvalid(f[2:-1])
-                    if f=="-":
-                        if len(fs)==0 or fs[-1]!="-":
-                            fs+=f
-                    else:
-                        fs+=f
+        if len(features)>1:
+            for seq in list(features.values()):
+                if seq!="none":
+                    rows.append(RawMessage(seq))
                 else:
-                    if len(fs)==0 or fs[-1]!="-" :
-                        fs+="-"
-            print(fs)
-            out.append(fs)
-        # print(out)
+                    out.append(seq)
+            symbols = Format.clusterByAlignment(rows,minEquivalence=60)
+            # Format.splitAligned(len(symbols))
+            print("-"*20)
+            for symbol in symbols:
+                fs=b""
+                l=symbol.fields.list
+                for d in l:
+                    if d.domain.dataType.value:
+                        f=TypeConverter.convert(d.domain.dataType.value, BitArray,Raw)
+                        fs+=isvalid(f) 
+                    else:
+                        if len(fs)==0 or fs[-1]!=45 :
+                            fs+=b"--"
+                print(fs)
+                out.append(convert(fs))
+        else:
+            f=list(features.values())[0]
+            if f=="none":
+                out.append(f)
+            else:
+                out.append(convert(isvalid(f)))
+
         print("*"*50)
+        out=Feature_optimization(out)
         return out
 
 def TransfromAutomata(features:collections.OrderedDict()):
-    feature=""
+    feature=b""
     positions=list(features.keys())
     if len(positions)==0:
         return "none"
     flag=positions[0]
     for position in positions:
         if position==flag:
-            feature+=features[position][0].hex()
+            feature+=features[position][0]
             flag+=1
         else:
-            feature+="-"+features[position][0].hex()
+            feature+=b"-"+features[position][0]
             flag=position+1
     return feature    
 
 def isvalid(feature:str):
-    if len(feature)==1:
-        return "-"
-    if feature.count("0")+feature.count("-")==len(feature):
-        return "-"
-
-    f=feature.split("-")
+    def modify(feature):
+        if feature.count(b"\x00")==len(feature):
+            return b""
+        if len(feature)>6:
+            return feature[0:6]
+        else:
+            return feature
+    ps=feature.split(b"-")
+    f=[]
+    for  p in ps:
+        if len(p)>0:
+            f.append(p)
+    if len(f)==0:
+        return b""
     if len(f)==1:
-        if len(f[0])%2==1:
-            return f[0][0:-1]
+        return modify(f[0])
     else:
-        for i in range(len(f)):
-            f[i]=isvalid(f[i])
-    res=f[0]
-    for i in range(1,len(f)):
-        if f[i]!="-":
-            res+="-"+f[i]
+        res=modify(f[0])
+        for i in range(1,len(f)):
+            if len(modify(f[i]))>0:
+                res+=b"--"+modify(f[i])
+        return res
 
+
+def Feature_optimization(features:list):
+    
+    res=list(set(features))
+    return  res
+
+def convert(fea):
+    res=""
+    for f in fea:
+        if f==45:
+            res+="-"
+        else:
+            res+=f.to_bytes(1,sys.byteorder).hex()
     return res
-
-
 
 
 

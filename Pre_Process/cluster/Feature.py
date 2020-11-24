@@ -3,28 +3,26 @@ import numpy as np
 from sklearn.metrics import silhouette_score
 
 
-def GetFeaVet(matrix, pkt, threshold):
+def GetFeaVet(matrix, num, threshold):
     '''
     根据matrix 筛选出每个位置的频繁项以及记录每个频繁项的频率
     param：matrix
-    param: 总报文数
+    param: 总序列数
     param：频繁项阈值
     return：fea_vector key:position value：[(频繁项，频率)，……]
     '''
     fea_vector = collections.OrderedDict()
     line_count = 1 # 行
-    all_pkt_p=list()
-    count=3
     for line in matrix[1:]:
         col_count = 0 # 列
         all_pkt=0
         for c in line:
-            if c / pkt >= threshold and c / pkt < 1 and matrix[0][col_count]!='--' :
+            if c / num >= threshold and c / num < 1 and matrix[0][col_count]!='--' :
                 all_pkt+=c
                 if line_count not in fea_vector.keys():
-                    fea_vector[line_count]=[[matrix[0][col_count],c/pkt]]
+                    fea_vector[line_count]=[[matrix[0][col_count],c/num]]
                 else:
-                    fea_vector[line_count].append([matrix[0][col_count],c/pkt])
+                    fea_vector[line_count].append([matrix[0][col_count],c/num])
             col_count += 1
         line_count += 1
 
@@ -34,8 +32,8 @@ def GetFeaVet(matrix, pkt, threshold):
 def GetAllVet(pcap_data, fea_vector, port_weight):
     '''
     根据各个位置的频繁项提取每个报文的特征向量
-    param：报文 ordereddict key：count value：报文应用层内容
-    param：频繁项 orderdict key：position value：[(频繁项，频率)，……]
+    param：序列信息
+    param：特征向量
     param：端口权重
     return X 特征向量集
     '''
@@ -64,7 +62,7 @@ def GetAllVet(pcap_data, fea_vector, port_weight):
     return X
 
 
-def Clusters(pcap_data, X, max_clus=5):
+def Clusters(X, max_clus=5):
     '''
     根据X进行聚类
     param:报文
