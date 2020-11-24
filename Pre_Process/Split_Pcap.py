@@ -30,19 +30,22 @@ def split_by_packet(path_src, path_des, new_file_name, packet_list):
     # print("reading:", path_src)
     f_new = open(os.path.join(path_des,new_file_name), 'wb')
     writer = dpkt.pcap.Writer(f_new)
-    for (ts, buf) in pcap:
-        try:
-            if index > length:
-                break
-            pkt += 1
-            eth = dpkt.ethernet.Ethernet(buf)  # 解包，物理层
-            # ip = eth.data
-            if pkt == packet_list[index]:
-                writer.writepkt(pkt=eth, ts=ts)
-                index += 1
-            # all_pcap_data[ts] = ip  # 将时间戳与应用层负载按字典形式有序放入字典中，方便后续分析.
-        except Exception as err:
-            print("[error] %s" % err)
+    try:
+        for (ts, buf) in pcap:
+            try:
+                if index > length:
+                    break
+                pkt += 1
+                eth = dpkt.ethernet.Ethernet(buf)  # 解包，物理层
+                # ip = eth.data
+                if pkt == packet_list[index]:
+                    writer.writepkt(pkt=eth, ts=ts)
+                    index += 1
+                # all_pcap_data[ts] = ip  # 将时间戳与应用层负载按字典形式有序放入字典中，方便后续分析.
+            except Exception as err:
+                print("[error] %s" % err)
+    except Exception as err:
+        print(err)
     f.close()
     f_new.close()
     end = time.time()
