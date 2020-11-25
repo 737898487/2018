@@ -12,8 +12,11 @@ def Text_Re(DATA_PATH, MODE, NAME):
     if os.path.exists(os.path.join(DATA_PATH, "text_tcp/0")):
         DATA_PATH += "/text_tcp/0/"
     else:
-        print("No data")
+        print("[info] No text data")
         return
+    if len(os.listdir(DATA_PATH)) < 50:
+        print("[info] No text data")
+        return 
 
     SEG_OUT_PATH = './run_file/seg_' + NAME 
     WORDS_PATH = './run_file/words_' + NAME 

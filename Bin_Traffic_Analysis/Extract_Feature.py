@@ -103,7 +103,7 @@ class Traffic:
         for i in range(len(data)):
             pcap_data[i]=data[i]
         gl.res=dict()
-        
+        gl.threshold_itor_nums=len(pcap_data)/10
         res=parse.Parse(pcap_data,0)
         features=dict()
         for key in res.keys():

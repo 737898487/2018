@@ -171,7 +171,9 @@ class traffic:
             for iter in dpco.items():
                 port.append(iter[0])
         self.size = len(file_name_list)
-        self.port = port
+        for p in port:
+            if p < 10000:
+                self.port.append(p)
 
     def infer_host_agent(self):
     # 得到协议中的user-agent和host信息
@@ -210,6 +212,7 @@ class traffic:
                         user_agent_set.append(d)
 
         counter1 = collections.Counter(host_set)
+        print(counter1)
         compile_host = re.compile('\.[A-Za-z]+\.[c|n|o|e][a-z]+$')
         temp = []
         host = []
@@ -235,7 +238,7 @@ class traffic:
             else: # host字段无公共子串；fls只包含一个'.':那么提取出来的只可能是'.com','.cn'等顶级域名
                 for hostt in temp:
                     respan = compile_host.search(hostt)
-                    if respan != None:
+                    if respan != None and counter1[hostt]/self.size > 0.8:
                         respan =  respan.span()
                         host.append(hostt[respan[0]:respan[1]])
         if len(host) != 0:
@@ -283,12 +286,15 @@ class traffic:
     def get_word_set_from_formats(self):
         feature_dic = {}
         if len(self.forward_formats) == 1:
-            num = len(feature_dic)+1
-            feature_dic[num] = []
             ffword = self.forward_formats[0].split('-->')[0:-1]
             if len(ffword) > 6:
+                num = len(feature_dic)+1
                 feature_dic[num] = ffword[0:6]
-            else:
+            elif len(ffword) > 3:
+                num = len(feature_dic)+1
+                feature_dic[num] = ffword
+            elif self.mode == "common":
+                num = len(feature_dic)+1
                 feature_dic[num] = ffword
         else:
             temp_ff = []
@@ -326,12 +332,15 @@ class traffic:
                     feature_dic[num] = word_fls
 
         if len(self.backward_formats) == 1:
-            num = len(feature_dic) + 1
-            feature_dic[num] = []
             bfword = self.backward_formats[0].split('-->')[0:-1]
             if len(bfword) > 6:
+                num = len(feature_dic) + 1
                 feature_dic[num] = bfword[0:6]
-            else:
+            elif len(bfword) > 3:
+                num = len(feature_dic) + 1
+                feature_dic[num] = bfword
+            elif self.mode == "common":
+                num = len(feature_dic)+1
                 feature_dic[num] = bfword
         else:
             temp_bf = []

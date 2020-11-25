@@ -18,7 +18,7 @@ def parse(src_path, dst_path, remove, flow_packets):
     file_list = ["bin_tcp", "text_tcp", "bin_udp", "text_udp"]
     # 先切分pcap,得到业务流
     ps = PreProcess()
-    ps.read_pcap_divide(src_path, 0.8, dst_path)
+    ps.read_pcap_divide(src_path, 0.5, dst_path)
     flow_bin_text = ps.get_element()
     num = -1
     for ele in flow_bin_text:

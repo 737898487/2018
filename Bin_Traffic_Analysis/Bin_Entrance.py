@@ -26,6 +26,10 @@ def Bin_Re(data_input,name):
         files_udp[i]=data_input+"/bin_udp/"+files_udp[i]
     files=files_udp+files_tcp
 
+    if len(files) == 0:
+        print('No bin data')
+        return
+
     data=dict()
     sports=set()
     dports=set()
@@ -33,10 +37,10 @@ def Bin_Re(data_input,name):
         pcaps_name=os.listdir(files[i])
         for j in range(len(pcaps_name)):
             pcaps_name[j]=files[i]+"/"+pcaps_name[j]
-        if len(pcaps_name)>20:
-            data[files[i]],sport,dport=readpcap.ReadPcapsSplice(pcaps_name,3)
-            sports=sport|sports
-            dports=dport|dports
+        # if len(pcaps_name)>20:
+        data[files[i]],sport,dport=readpcap.ReadPcapsSplice(pcaps_name,3)
+        sports=sport|sports
+        dports=dport|dports
     
     application=Extract.Application(app,data,sports,dports)
     application.setTraffic()

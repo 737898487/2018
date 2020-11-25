@@ -99,15 +99,15 @@ class PreProcess:
         writer_2 = dpkt.pcap.Writer(f_new_2)
 
         for flow in tcp_list:
-            if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
+            if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9 and now_tcp_length / tcp_length < ratio:
                 self.text_tcp_flow_list.append(flow)
             else:
-                if flow[1][0][1].data.data.dport == 443 and flow[1][0][1].data.data.data.hex()[:6] == '160301' or flow[1][0][1].data.data.data.hex()[:6] == '160303':
+                if flow[1][0][1].data.data.dport == 443 and flow[1][0][1].data.data.data.hex()[:6] == '160301' or flow[1][0][1].data.data.data.hex()[:6] == '160303' or flow[1][0][1].data.data.data.hex()[:6] == '170303' or flow[1][0][1].data.data.data.hex()[:6] == '170301':
                     tls_count += 1  # except TLS1.2 or TLS1.3
                     for pkt in flow[1]:
                         writer_1.writepkt(pkt=pkt[1], ts=pkt[0])
                         tls_size += len(pkt[1])
-                else:
+                elif now_tcp_length / tcp_length < ratio:
                     self.bin_tcp_flow_list.append(flow)
             now_tcp_length += len(flow[1])
             if now_tcp_length / tcp_length > ratio:
@@ -124,9 +124,9 @@ class PreProcess:
         for flow in udp_list:
             if len(flow[1]) < 20:
                 break
-            if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9:
+            if printable(flow[1][0][1].data.data.data.hex())[1] > 0.9 and now_udp_length / udp_length < ratio:
                 self.text_udp_flow_list.append(flow)
-            else:
+            elif now_udp_length / udp_length < ratio:
                 self.bin_udp_flow_list.append(flow)
             now_udp_length += len(flow[1])
             if now_udp_length / udp_length > ratio:
@@ -140,7 +140,7 @@ class PreProcess:
         count = 0
         for path in path_list:
             count += 1
-            if count > 300:
+            if count > 100:
                 break
             self.read_drop(os.path.join(src_path, path), count, ratio, dst_path)
 

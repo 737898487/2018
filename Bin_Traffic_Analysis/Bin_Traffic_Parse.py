@@ -33,7 +33,7 @@ def Parse(pacp_data,nums_itor):
     gl.res.update(res_clus)
     
     #进行迭代
-    if len(itor_pkts)>10 and nums_itor<4:
+    if len(itor_pkts)>gl.threshold_itor_nums and nums_itor<4:
         Parse(itor_pkts,nums_itor+1)
     
     return gl.res

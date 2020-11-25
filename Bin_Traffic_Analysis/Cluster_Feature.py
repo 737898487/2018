@@ -82,14 +82,17 @@ def Clusters(pcap_data,X,nums_itor,max_clus=15):
             final_y=res
             break
         res_list.append(res)
-        temp = silhouette_score(X, res, metric='euclidean')
+        try:
+            temp = silhouette_score(X, res, metric='euclidean')
+        except:
+            continue
 
             
         if temp > max_sil:
             max_sil = temp
             num = n 
             final_y = res
-        if temp >= 0.9:
+        if temp>= 0.9:
             break
  
     split_dict = {}
