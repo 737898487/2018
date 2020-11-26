@@ -32,6 +32,5 @@ if __name__ == "__main__":
     Bin_Re(pre_output, name)
     Text_Re(pre_output, mode, name)
 
-    # del_file("./cache")
-    # del_file("./run_file")
-    # os.rmdir("./cache")
+    del_file("./run_file")
+    del_file("./cache")

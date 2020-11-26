@@ -212,7 +212,6 @@ class traffic:
                         user_agent_set.append(d)
 
         counter1 = collections.Counter(host_set)
-        print(counter1)
         compile_host = re.compile('\.[A-Za-z]+\.[c|n|o|e][a-z]+$')
         temp = []
         host = []

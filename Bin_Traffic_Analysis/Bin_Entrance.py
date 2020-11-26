@@ -27,7 +27,7 @@ def Bin_Re(data_input,name):
     files=files_udp+files_tcp
 
     if len(files) == 0:
-        print('No bin data')
+        print('[info] No bin data.')
         return
 
     data=dict()
